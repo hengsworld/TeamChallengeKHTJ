@@ -1,2 +1,2 @@
 # TeamChallengeKHTJ
-My favorite candy is candy corn.
+My favorite candy is gummy bears, especially the green ones. 
