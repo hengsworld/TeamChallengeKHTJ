@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('RegistrationApp')
+angular.module('RegistrationApp', [])
 
 .controller('RegisterCtrl', ['$scope', function($scope) {
 
