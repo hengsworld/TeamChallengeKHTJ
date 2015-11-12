@@ -13,10 +13,6 @@
     <link rel="stylesheet" href="css/main.css" />
     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <!-- UI Router -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-    <!-- UI Bootstrap -->
-    <script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
 </head>
 
 <body ng-app="RegistrationApp" class="container">
@@ -36,7 +32,8 @@
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input type="lastName" class="form-control" id="lastName">
+                <input ng-model="lastname" name="lastname" type="lastname" class="form-control" id="lastname" placeholder="your last name" required>
+                <p ng-show="signUpForm.lastname.$invalid && signUpForm.lastname.$touched">we need to know your last name</p>
             </div>
             <div class="form-group">
                 <label for="numbers">Date of birth</label>
