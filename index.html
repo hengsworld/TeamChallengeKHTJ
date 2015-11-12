@@ -34,8 +34,8 @@
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input ng-model="lastname" name="lastname" type="lastname" class="form-control" id="lastname" required>
-                <p ng-show="lastname.$invalid">we need to know your last name</p>
+                <input ng-model="lastname" name="lastname" type="lastname" class="form-control" id="lastname" placeholder="your last name" required>
+                <p ng-show="signUpForm.lastname.$invalid && signUpForm.lastname.$touched">we need to know your last name</p>
             </div>
             <div class="form-group">
                 <label for="numbers">Date of birth</label>
