@@ -19,18 +19,18 @@
     <script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
 </head>
 
-<body ng-app="RegistrationApp">
+<body ng-app="RegistrationApp" class="container">
 
     <h1>Sign Up</h1>
     <p>Our service is fun and awesome, but you must be 13 years old to join</p>
 
     <!-- Form  -->
-    <form role="form" ng-controller="RegisterCtrl">
+    <form name="signUpForm" role="form" ng-controller="RegisterCtrl">
         <div class="container">
             <div class="form-group">
                 <label for="email">Email address:</label>
                 <input ng-model="email" name="email" type="email" class="form-control" id="email" placeholder="email address" required>
-                <p ng-if="email.$invalid && email.$touched" class="help-block small">your email address is invalid</p>
+                <p ng-if="signUpForm.email.$invalid && signUpForm.email.$touched" class="help-block small">your email address is invalid</p>
             </div>
             <div class="form-group">
                 <label for="firstName"> First Name</label>
@@ -53,7 +53,7 @@
                 <input type="password" class="form-control" id="pwd2">
             </div>
             <button class="btn btn-default">Reset</button>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="signUpForm.$invalid">Submit</button>
         </div>
     </form>
     <!-- our Javascript -->
