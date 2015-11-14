@@ -19,7 +19,7 @@
     <h1>Sign Up</h1>
     <p>Our service is fun and awesome, but you must be 13 years old to join</p>
     <!-- Form  -->
-    <form name="signUpForm" role="form" ng-controller="RegisterCtrl">
+    <form id="signUpForm" ng-model="signUpForm" name="signUpForm" role="form" ng-controller="RegisterCtrl" novalidate>
         <div class="container">
             <div class="form-group">
                 <label for="email">Email address:</label>
@@ -34,9 +34,9 @@
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input ng-model="lastname" name="lastname" type="lastname" class="form-control" id="lastname" placeholder="your last name" required>
+                <input ng-model="lastName" name="lastName" type="lastName" class="form-control" id="lastName" placeholder="your last name" required>
                 <br>
-                <div ng-show="signUpForm.lastname.$invalid && signUpForm.lastname.$touched" class="alert alert-danger">We need to know your last name</div>
+                <div ng-show="signUpForm.lastName.$invalid && signUpForm.lastName.$touched" class="alert alert-danger">We need to know your last name</div>
             </div>
             <div class="form-group">
                 <label for="numbers">Date of birth</label>
@@ -53,7 +53,7 @@
                 <input type="password" class="form-control" id="pwd2">
                 <br>
             </div>
-            <button class="btn btn-default">Reset</button>
+            <button class="btn btn-default" ng-click="clearForm()">Reset</button>
             <button type="submit" class="btn btn-primary" ng-disabled="signUpForm.$invalid">Submit</button>
         </div>
     </form>
