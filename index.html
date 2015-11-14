@@ -25,27 +25,33 @@
                 <label for="email">Email address:</label>
                 <input ng-model="email" name="email" type="email" class="form-control" id="email" placeholder="email address" required>
                 <p ng-if="signUpForm.email.$invalid && signUpForm.email.$touched" class="help-block small">your email address is invalid</p>
+                <br>
             </div>
             <div class="form-group">
                 <label for="firstName"> First Name</label>
                 <input type="firstName" class="form-control" id="firstName" placeholder="your first name">
+                <br>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
                 <input ng-model="lastname" name="lastname" type="lastname" class="form-control" id="lastname" placeholder="your last name" required>
-                <p ng-show="signUpForm.lastname.$invalid && signUpForm.lastname.$touched">we need to know your last name</p>
+                <br>
+                <div ng-show="signUpForm.lastname.$invalid && signUpForm.lastname.$touched" class="alert alert-danger">We need to know your last name</div>
             </div>
             <div class="form-group">
                 <label for="numbers">Date of birth</label>
                 <input type="numbers" class="form-control" id="numbers">
+                <br>
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label>
                 <input type="password" class="form-control" id="pwd1">
+                <br>
             </div>
             <div class="form-group">
                 <label for="pwd">Confirm Password:</label>
                 <input type="password" class="form-control" id="pwd2">
+                <br>
             </div>
             <button class="btn btn-default">Reset</button>
             <button type="submit" class="btn btn-primary" ng-disabled="signUpForm.$invalid">Submit</button>

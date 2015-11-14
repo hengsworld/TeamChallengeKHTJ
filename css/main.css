@@ -1,0 +1,10 @@
+body {
+    background: url('http://www.demo.amitjakhu.com/login-form/images/bg.png');
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    padding: 5em;
+}
+
+.form-group:hover {
+    background: #dfe9ec;
+    color: #f676b2;
+}
