@@ -107,5 +107,28 @@ describe('Index page form', function(){
 			}
 		})
 	});
+	//this fill in everything then submit.
+	it('should submit after everything been filled in', function(){
+		var email = element(by.model('signUpForm'));
+		input.sendKeys('hengsworld@awesomemail.com');
+
+		var firstName = element(by.model('firstName'));
+		input.sendKeys('legendary');
+
+		var lastName = element(by.model('lastName'));
+		input.sendKeys('Awesome');
+
+		var date = element(by.id('numbers'));
+		input.sendKeys('10/16/1996');
+
+		var pwd1 = element( by.id('pwd1') );
+		var pwd2 = element( by.id('pwd2') );
+		pwd1.sendKeys('password');
+		pwd2.sendKeys('password');
+
+		var button = element(by.buttonText("submit"));
+		button.click();
+
+	});
 
 });
