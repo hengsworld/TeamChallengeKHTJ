@@ -79,14 +79,13 @@ describe('Index page form', function() {
 
     // add other tests here
 
-    it('should have two password fields that are valid', function() {
+    it('should have two password fields that are invalid', function() {
 
         var pwd1 = element(by.id('pwd1'));
         var pwd2 = element(by.id('pwd2'));
         pwd1.sendKeys('password');
         pwd2.sendKeys('different');
         expect(pwd1.getAttribute('class')).toContain('ng-invalid');
-        expect(pwd2.getAttribute('class')).toContain('ng-invalid');
         pwd1.clear();
         pwd2.clear();
         expect(pwd1.getAttribute('class')).toContain('ng-invalid');
@@ -121,25 +120,22 @@ describe('Index page form', function() {
 
 	//this fill in everything then submit.
 	it('should submit after everything been filled in', function(){
-		var email = element(by.model('signUpForm'));
-		input.sendKeys('hengsworld@awesomemail.com');
+		
+		element.all( by.tagName('input') ).then(function(inputs) {
+			for (var i = 0; i < inputs.length; i++) {
+				inputs[i].sendKeys('test');
+			}
+		})
 
-		var firstName = element(by.model('firstName'));
-		input.sendKeys('legendary');
-
-		var lastName = element(by.model('lastName'));
-		input.sendKeys('Awesome');
+		var emailBox = element(by.id('email'));
+		emailBox.sendKeys('test@test.com');
 
 		var date = element(by.id('numbers'));
-		input.sendKeys('10/16/1996');
-
-		var pwd1 = element( by.id('pwd1') );
-		var pwd2 = element( by.id('pwd2') );
-		pwd1.sendKeys('password');
-		pwd2.sendKeys('password');
+		date.sendKeys('12/12/1995');
 
 		var button = element(by.buttonText("Submit"));
-		button.click();
+		expect(button.isEnabled()).toBe(true);
+
 
 	});
 
