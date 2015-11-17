@@ -46,20 +46,17 @@
                 <br>
             </div>
             <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd1" ng-model="pwd1" ng-required>
+                <label for="password">Password:</label>
+                <input type="password" id="pwd2" name="password" class="form-control" ng-model="password" pw-check="confirmPassword" required/>
                 <br>
             </div>
             <div class="form-group">
-                <label for="pwd">Confirm Password:</label>
-                <input type="password" class="form-control" id="pwd2" ng-model="pwd2" ng-required pw-check="pwd1">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="pwd2" name="confirmPassword" class="form-control" ng-model="confirmPassword"/>
                 <br>
+                <p class="help-block" ng-show="signUpForm.password.$error.pwmatch"> Passwords don't match. </p>
             </div>
-            <div class="msg-block" ng-show="signUpForm.$error">
-            <span class="msg-error" ng-show="signUpForm.pwd2.$error.pwdmatch">
-            Passwords don't match.
-            </span>
-            </div>
+
             <button class="btn btn-default" ng-click="clearForm()">Reset</button>
             <button type="submit" class="btn btn-primary" ng-disabled="signUpForm.$invalid" ng-click="submitForm()">Submit</button>
         </div>
