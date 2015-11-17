@@ -40,18 +40,27 @@
             </div>
             <div class="form-group">
                 <label for="numbers">Date of birth</label>
-                <input type="numbers" class="form-control" id="numbers">
+                <input type="numbers" class="form-control" id="numbers" placeholder="MM/DD/YYYY">
                 <br>
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd1">
+                <input type="password" class="form-control" id="pwd1" name "password">
+                <div class="invalid" ng-show="signUpForm.password.$touched">
+                    <span ng-show="signUpForm.password.$form-group.required">A password is required</span>
+                </div>
                 <br>
             </div>
             <div class="form-group">
                 <label for="pwd">Confirm Password:</label>
-                <input type="password" class="form-control" id="pwd2">
+                <input type="password" class="form-control" id="pwd2" name 'comfirm'>
+                <div class="invalid" ng-show="signUpForm.comfirm.$form-group.required ">
+                    <span ng-show="signUpForm.comfirm.$form-group.required">A password is required</span>
+                </div>
                 <br>
+                <div class="invalid" ng-show='!matchPassword()'>
+                    <p>password needs to match</p>
+                </div>
             </div>
             <button class="btn btn-default" ng-click="clearForm()">Reset</button>
             <button type="submit" class="btn btn-primary" ng-disabled="signUpForm.$invalid" ng-click="submitForm()">Submit</button>
