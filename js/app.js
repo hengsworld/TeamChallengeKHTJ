@@ -12,22 +12,17 @@ angular.module('RegistrationApp', [])
     $scope.submitForm = function() {
         $scope.submitted = true;
     }
-    $scope.password = "";
-    $scope.confirm = "";
 
 }])
 
-.directive('pwdCheck', [function() {
-    return {
-        require: 'ngModel',
-        link: function(scope, elem, attrs, ctrl) {
-            var firstPassword = '#' + attrs.pwdCheck;
-            elem.add(firstPassword).on('keyup', function() {
-                scope.$apply(function() {
-                    var v = elem.val() === $(firstPassword).val();
-                    ctrl.$setValidity('pwmatch', v);
-                })
-            })
-        }
-    }
-}])
+.directive('pwCheck', function () {
+	return {
+		require: 'ngModel',
+		link: function (scope, elem, attrs, ctrl) {
+			scope.$watch(attrs.pwCheck, function (confirmPassword) {
+    			var isValid = ctrl.$viewValue === confirmPassword;
+    			ctrl.$setValidity('pwmatch', isValid);
+			})
+		}
+	}
+});
