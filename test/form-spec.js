@@ -96,7 +96,6 @@ describe('Index page form', function() {
 
     it('should have two password fields that are valid', function() {
 
-<<<<<<< HEAD
         var pwd1 = element(by.id('pwd1'));
         var pwd2 = element(by.id('pwd2'));
         pwd1.sendKeys('password');
@@ -108,18 +107,6 @@ describe('Index page form', function() {
 
     it('should have the reset button clear all the inputs', function() {
 
-        var reset = element(by.buttonText('Reset'));
-        element.all(by.tagName('input')).then(function(inputs) {
-            for (var i = 0; i < inputs.length; i++) {
-                inputs[i].sendKeys('test');
-            }
-            reset.click();
-            for (var i = 0; i < inputs.length; i++) {
-                expect(inputs[i].getText()).toEqual('');
-            }
-        })
-    });
-=======
 		var reset = element( by.buttonText('Reset') );
 		element.all( by.tagName('input') ).then(function(inputs) {
 			for (var i = 0; i < inputs.length; i++) {
@@ -131,6 +118,7 @@ describe('Index page form', function() {
 			}
 		})
 	});
+
 	//this fill in everything then submit.
 	it('should submit after everything been filled in', function(){
 		var email = element(by.model('signUpForm'));
@@ -150,10 +138,9 @@ describe('Index page form', function() {
 		pwd1.sendKeys('password');
 		pwd2.sendKeys('password');
 
-		var button = element(by.buttonText("submit"));
+		var button = element(by.buttonText("Submit"));
 		button.click();
 
 	});
->>>>>>> e1eeec92811a414a5b56fde1583c0d808efeb60c
 
 });
