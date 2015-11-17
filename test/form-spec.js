@@ -77,7 +77,29 @@ describe('Index page form', function() {
 
     });
 
-    // add other tests here
+    it('should have an invalid date due to wrong format', function() {
+
+    	var date = element(by.id('numbers'));
+    	date.sendKeys('1234567890');
+    	expect(date.getAttribute('class')).toContain('ng-invalid');
+
+    })
+
+    it('should have an invalid date due to being too young', function() {
+
+    	var date = element(by.id('numbers'));
+    	date.sendKeys('01/01/2009');
+    	expect(date.getAttribute('class')).toContain('ng-invalid');
+    	
+    })
+
+    it('should have a valid date', function() {
+
+    	var date = element(by.id('numbers'));
+    	date.sendKeys('12/12/1990');
+    	expect(date.getAttribute('class')).toContain('ng-valid');
+    	
+    })
 
     it('should have two password fields that are invalid', function() {
 
@@ -125,17 +147,22 @@ describe('Index page form', function() {
 			for (var i = 0; i < inputs.length; i++) {
 				inputs[i].sendKeys('test');
 			}
-		})
+		}).then(function() {
 
-		var emailBox = element(by.id('email'));
-		emailBox.sendKeys('test@test.com');
+			var emailBox = element(by.id('email'));
+			emailBox.clear();
+			emailBox.sendKeys('test@test.com');
 
-		var date = element(by.id('numbers'));
-		date.sendKeys('12/12/1995');
+			var dateBox = element(by.id('numbers'));
+			dateBox.clear();
+			dateBox.sendKeys('12/12/1990');
 
-		var button = element(by.buttonText("Submit"));
-		expect(button.isEnabled()).toBe(true);
+		}).then(function() {
 
+			var button = element(by.buttonText('Submit'));
+			expect(button.isEnabled()).toBe(true);
+
+		});
 
 	});
 

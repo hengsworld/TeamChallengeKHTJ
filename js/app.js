@@ -9,35 +9,18 @@ angular.module('RegistrationApp', [])
         $scope.signUpForm.$setPristine();
         $scope.signUpForm.$setUntouched();
     }
+
     $scope.submitForm = function() {
         $scope.submitted = true;
     }
 
-    $scope.ageValidation = function() {
-    	var dob = document.getElementById("#numbers").val();
-    	var now = new Date();
-    	var data = dob.split("/");
-    	var born = new Date(data[2], data[0]-1, data[1]);
-    	age = get_age(born, now);
-    	console.log("#numbers");
-
-    	if(isNaN(Date.parse(data[2] + "-" + data[1] + "-" + data[0]))) {
-    		return false;
-    	}
-
-    	if(age <= 13) {
-    		alert("Age should be greater than 13");
-    		return false;
-    	}
-    }
-
-    $scope.get_age = function(born, now) {
-    	var birthday = new Date(now.getFullYear(), born.getMonth(), born.getDate());
-    	if(now >= birthday) {
-    		return now.getFullYear() - born.getFullYear();
-    	} else {
-    		return now.getFulYear() - born.getFullYear() - 1;
-    	}
+    $scope.getDate = function(passedDate) {
+    	var today = new Date();
+    	var test = (today.getMonth() + 1) + "/"
+    		+ today.getDate() + "/" + (today.getFullYear() - 13);
+    	var past = Date.parse(test);
+    	var passed = Date.parse(passedDate);
+    	return passed < past; 
     }
 }])
 
@@ -58,4 +41,20 @@ angular.module('RegistrationApp', [])
             });
         }
     };
-});
+})
+
+.directive("dateValid", function() {
+    return {
+        require: "ngModel",
+        link: function(scope, element, attributes, ngModel) {
+             
+            ngModel.$validators.dateValid = function(modelValue) {
+                return scope.getDate(modelValue);
+            };
+ 
+            scope.$watch("modelValue", function() {
+                ngModel.$validate();
+            });
+        }
+    };
+});;
