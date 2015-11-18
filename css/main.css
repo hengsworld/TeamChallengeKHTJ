@@ -4,7 +4,20 @@ body {
     padding: 5em;
 }
 
-.form-group:hover {
-    background: #dfe9ec;
-    color: #f676b2;
+#signUpForm {
+	background-color: #dfe9ec;
+	padding: 15px;
 }
+
+.btn {
+	margin-right: 10px;
+}
+
+.help-block {
+	color: red;
+}
+
+h1 {
+	font-weight: bold;
+}
+
