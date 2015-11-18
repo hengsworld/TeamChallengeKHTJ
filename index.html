@@ -20,56 +20,41 @@
     <p>Our service is fun and awesome, but you must be 13 years old to join.</p>
     <!-- Form  -->
     <form id="signUpForm" ng-model="signUpForm" name="signUpForm" role="form" ng-controller="RegisterCtrl" novalidate>
-            <div class="form-group">
-                <label for="email">Email address:</label>
-                <input ng-model="email" name="email" type="email" class="form-control" id="email" placeholder="email address" required>
-                <p ng-if="signUpForm.email.$error.email" class="help-block small">your email address is invalid</p>
-                <p ng-if="signUpForm.email.$touched && signUpForm.email.$error.required" class="help-block small">you must enter your email</p>
-                <!-- <br> -->
-<!-- =======
-                <p ng-show="signUpForm.email.$touched && signUpForm.email.$error.required" class="alert alert-danger">your email cannot be blank/valid</p>
->>>>>>> 9d93fe7287824050b2fae59f0326883474de8ce1 -->
-            </div>
-            <div class="form-group">
-                <label for="firstName"> First Name:</label>
-                <input type="firstName" class="form-control" id="firstName" placeholder="your first name">
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input ng-model="lastName" name="lastName" type="lastName" class="form-control" id="lastName" placeholder="your last name" required>
-                <p ng-show="signUpForm.lastName.$invalid && signUpForm.lastName.$touched" class="help-block small">please enter your last name</p><br>
-            </div>
-            <div class="form-group">
-                <label for="numbers">Date of birth:</label>
-                <input type="numbers" name="dob" class="form-control" id="numbers" placeholder="MM/DD/YYYY" ng-model="numbers" date-valid required>
-                <p class="help-block small" ng-if="signUpForm.dob.$invalid && signUpForm.dob.$dirty">sorry, you are too young, you must be at least 13 to sign up<br></p>
-                <p class="help-block small" ng-if="signUpForm.dob.$touched && signUpForm.dob.$error.required">please enter your birthdate<br></p>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="pwd1" name="password" class="form-control" ng-model="password" required compare-to="confirmPassword">
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password:</label>
-                <input type="password" id="pwd2" name="confirmPassword" ng-model="confirmPassword" class="form-control" required/>
-                <p class="help-block small" ng-show="signUpForm.password.$invalid && signUpForm.password.$touched && signUpForm.confirmPassword.$touched"> your passwords don't match </p><br>
-            </div>
-            <button type="button" class="btn btn-default" ng-click="clearForm()">Reset</button>
-            <button type="submit" class="btn btn-primary" ng-disabled="signUpForm.$invalid" ng-click="submitForm()">Submit</button>
-            <p class="alert alert-success" ng-show="signUpForm.$submitted">
-                <strong>Success!</strong> Form has been submitted.
-            </p>
-    <!-- </div> -->
-<!-- =======
-                <p class="alert alert-danger" ng-show="signUpForm.password.$invalid && signUpForm.password.$touched && signUpForm.confirmPassword.$touched"> Passwords don't match. </p>
-            </div>
-            <button type="button" class="btn btn-default" ng-click="clearForm()">Reset</button>
-            <button type="submit" class="btn btn-primary" ng-disabled="signUpForm.$invalid" ng-click="submitForm()">Submit</button>
-            <p class="alert alert-success" ng-show="signUpForm.$submitted">
-                <strong>Success!</strong> Form has been submitted.
-            </p>
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            <input ng-model="email" name="email" type="email" class="form-control" id="email" placeholder="email address" required>
+            <p ng-if="signUpForm.email.$error.email" class="help-block small">your email address is invalid<br></p>
+            <p ng-if="signUpForm.email.$touched && signUpForm.email.$error.required" class="help-block small">you must enter your email</p><br>
         </div>
->>>>>>> 9d93fe7287824050b2fae59f0326883474de8ce1 -->
+        <div class="form-group">
+            <label for="firstName"> First Name:</label>
+            <input type="firstName" class="form-control" id="firstName" placeholder="your first name"><br>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input ng-model="lastName" name="lastName" type="lastName" class="form-control" id="lastName" placeholder="your last name" required>
+            <p ng-show="signUpForm.lastName.$invalid && signUpForm.lastName.$touched" class="help-block small">please enter your last name</p><br>
+        </div>
+        <div class="form-group">
+            <label for="numbers">Date of birth:</label>
+            <input type="numbers" name="dob" class="form-control" id="numbers" placeholder="MM/DD/YYYY" ng-model="numbers" date-valid required>
+            <p class="help-block small" ng-if="signUpForm.dob.$invalid && signUpForm.dob.$dirty">sorry, your birthdate is invalid, and you must be at least 13 to sign up</p>
+            <p class="help-block small" ng-if="signUpForm.dob.$touched && signUpForm.dob.$error.required">please enter your birthdate</p><br>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="pwd1" name="password" class="form-control" ng-model="password" required compare-to="confirmPassword">
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="pwd2" name="confirmPassword" ng-model="confirmPassword" class="form-control" required/>
+            <p class="help-block small" ng-show="signUpForm.password.$invalid && signUpForm.password.$touched && signUpForm.confirmPassword.$touched">your passwords don't match</p><br>
+        </div>
+        <button type="button" class="btn btn-default" ng-click="clearForm()">Reset</button>
+        <button type="submit" class="btn btn-primary" ng-disabled="signUpForm.$invalid" ng-click="submitForm()">Submit</button>
+        <p class="alert alert-success" ng-show="signUpForm.$submitted">
+            <strong>Success!</strong> Form has been submitted.
+        </p>
     </form>
     <!-- our Javascript -->
     <script src="js/app.js"></script>
