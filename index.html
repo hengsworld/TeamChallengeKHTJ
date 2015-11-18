@@ -24,40 +24,36 @@
             <div class="form-group">
                 <label for="email">Email address:</label>
                 <input ng-model="email" name="email" type="email" class="form-control" id="email" placeholder="email address" required>
-                <p ng-if="signUpForm.email.$invalid && signUpForm.email.$touched" class="help-block small">your email address is invalid</p>
-                <p ng-show="signUpForm.email.$touched && signUpForm.email.$error.required">your email cannot be blank</p>
-                <br>
+                <p ng-show="signUpForm.email.$touched && signUpForm.email.$error.required" class="alert alert-danger">your email cannot be blank/valid</p>
             </div>
             <div class="form-group">
                 <label for="firstName"> First Name</label>
                 <input type="firstName" class="form-control" id="firstName" placeholder="your first name">
-                <br>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
                 <input ng-model="lastName" name="lastName" type="lastName" class="form-control" id="lastName" placeholder="your last name" required>
-                <br>
-                <div ng-show="signUpForm.lastName.$invalid && signUpForm.lastName.$touched" class="alert alert-danger">We need to know your last name</div>
+                <p ng-show="signUpForm.lastName.$invalid && signUpForm.lastName.$touched" class="alert alert-danger">We need to know your last name</p>
             </div>
             <div class="form-group">
                 <label for="numbers">Date of birth</label>
                 <input type="numbers" name="dob" class="form-control" id="numbers" placeholder="MM/DD/YYYY" ng-model="numbers" date-valid>
-                <p class="help-block" ng-show="signUpForm.dob.$invalid && signUpForm.dob.$touched"> You are too young. </p>
-                <br>
+                <p class="alert alert-danger" ng-show="signUpForm.dob.$invalid && signUpForm.dob.$touched"> You are too young. </p>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="pwd1" name="password" class="form-control" ng-model="password" required compare-to="confirmPassword">
-                <br>
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password:</label>
                 <input type="password" id="pwd2" name="confirmPassword" ng-model="confirmPassword" class="form-control" required/>
-                <br>
-                <p class="help-block" ng-show="signUpForm.password.$invalid && signUpForm.password.$touched && signUpForm.confirmPassword.$touched"> Passwords don't match. </p>
+                <p class="alert alert-danger" ng-show="signUpForm.password.$invalid && signUpForm.password.$touched && signUpForm.confirmPassword.$touched"> Passwords don't match. </p>
             </div>
-            <button class="btn btn-default" ng-click="clearForm()">Reset</button>
-            <button type="submit" class="btn btn-primary" ng-disabled="signUpForm.$invalid" ng-click="submitForm()">Submit</button>
+            <button type="button" class="btn btn-default" ng-click="clearForm()">Reset</button>
+            <button type="submit" name="success" class="btn btn-primary" ng-disabled="signUpForm.$invalid" ng-click="submitForm()">Submit</button>
+            <p class="alert alert-success" ng-show="signUpForm.$submitted">
+                <strong>Success!</strong> Form has been submitted.
+            </p>
         </div>
     </form>
     <!-- our Javascript -->
