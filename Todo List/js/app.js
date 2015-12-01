@@ -70,6 +70,7 @@ angular.module('TodoApp', ['ui.router', 'ui.bootstrap', 'firebase'])
     Auth.$onAuth(function(authData) {
         if(authData) { //if we are authorized
             $scope.userId = authData.uid;
+            $scope.userName = authData.password.email;
         }
         else {
             $scope.userId = undefined;
@@ -97,7 +98,7 @@ angular.module('TodoApp', ['ui.router', 'ui.bootstrap', 'firebase'])
     };
 
     $scope.formatTime = function(time) {
-        return new Date(time).toDateString();
+        return new Date(time).toLocaleString();
     }
 
 }])
@@ -110,7 +111,7 @@ angular.module('TodoApp', ['ui.router', 'ui.bootstrap', 'firebase'])
         var newItem = {
             title: $scope.title,
             body: $scope.body,
-            author: $scope.userId,
+            author: $scope.userName,
             time: Firebase.ServerValue.TIMESTAMP
         };
         $scope.$parent.list.$add(newItem);

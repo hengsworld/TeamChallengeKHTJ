@@ -29,6 +29,8 @@
     <div class="nav-bar">
         <button class="btn btn-default" ng-hide="userId" ng-click="open()">Login</button>
         <button class="btn btn-default" ng-show="userId" ng-click="logOut()">Log Out</button>
+        <a ui-sref="home"><button class="btn btn-default">Home</button></a>
+        <a ui-sref="edit"><button class="btn btn-default">Edit</button></a>
     </div>
 
     <div ui-view>
