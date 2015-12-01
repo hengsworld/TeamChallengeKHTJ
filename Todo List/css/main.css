@@ -1,0 +1,24 @@
+.nav-bar {
+	position: fixed;
+	background-color: black;
+	width: 100%;
+	left: 0;
+	right: 0;
+	height: 50px;
+	opacity: .8;
+}
+
+.nav-bar .btn {
+	height: 30px;
+	margin: 0;
+	margin-top: 10px;
+	width: 80px;
+}
+
+.note {
+	border: 1px solid black;
+}
+
+.top-margin {
+	margin-top: 80px;
+}
