@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('TodoApp', ['ui.router', 'ui.bootstrap', 'firebase'])
+angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'firebase'])
 
-.config(function($stateProvider) {
+.config(['panelsProvider', '$stateProvider', function(panelsProvider, $stateProvider) {
     $stateProvider
     .state('home', {
         url: '/',
@@ -13,13 +13,22 @@ angular.module('TodoApp', ['ui.router', 'ui.bootstrap', 'firebase'])
         url: '/edit',
         templateUrl: 'partials/edit.html',
         controller: 'newNoteCtrl'
-    })
-})
+    });
+
+    panelsProvider
+    .add({
+        id: 'sideBar',
+        position: 'left',
+        size: '700px',
+        templateUrl: 'partials/sideBar.html',
+        controller: 'sideBarCtrl'
+    });
+}])
 
 // parent controller that houses all the ui-views
 // put all global functions and variables here to access them from
 // the other ui-views
-.controller('TodoCtrl', ['$scope', '$uibModal', '$firebaseAuth', '$firebaseArray', '$firebaseObject', '$stateParams', function ($scope, $uibModal, $firebaseAuth, $firebaseArray, $firebaseObject, $stateParams) {
+.controller('TodoCtrl', ['$scope', '$uibModal', '$firebaseAuth', '$firebaseArray', '$firebaseObject', '$stateParams', 'panels', function ($scope, $uibModal, $firebaseAuth, $firebaseArray, $firebaseObject, $stateParams, panels) {
 
     //reference to the app
     var ref = new Firebase("https://khtj-todo-list.firebaseio.com/");
@@ -95,7 +104,12 @@ angular.module('TodoApp', ['ui.router', 'ui.bootstrap', 'firebase'])
                             // are availible to be called from here
         });
 
-    };
+    }
+
+    $scope.sideBarOpen = function() {
+        $scope.$broadcast('leftBarOpen', {});
+        console.log('sent');
+    }
 
     $scope.formatTime = function(time) {
         return new Date(time).toLocaleString();
@@ -117,6 +131,15 @@ angular.module('TodoApp', ['ui.router', 'ui.bootstrap', 'firebase'])
         $scope.$parent.list.$add(newItem);
         $scope.$parent.list.$save();
     }
+
+}])
+
+.controller('sideBarCtrl', ['$scope', 'panels', function ($scope, panels) {
+
+    $scope.$on('leftBarOpen', function(event, args) {
+        console.log('received');
+        panels.open('sideBar');
+    });
 
 }])
 

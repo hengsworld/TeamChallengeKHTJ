@@ -19,6 +19,10 @@
 	border: 1px solid black;
 }
 
+.pane-head {
+	text-align: right;
+}
+
 .top-margin {
 	margin-top: 80px;
 }

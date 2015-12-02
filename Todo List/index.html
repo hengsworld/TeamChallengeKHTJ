@@ -10,6 +10,10 @@
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <!-- Angular Panels CSS -->
+    <link rel="stylesheet" href="css/angular.panels.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- our CSS -->
     <link rel="stylesheet" href="css/main.css" />
     <!-- Angular -->
@@ -18,6 +22,8 @@
     <script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
     <!-- UI Router -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <!-- Angular Panels JS -->
+    <script src="lib/angular.panels.js"></script>
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
     <!-- AngularFire -->
@@ -31,10 +37,13 @@
         <button class="btn btn-default" ng-show="userId" ng-click="logOut()">Log Out</button>
         <a ui-sref="home"><button class="btn btn-default">Home</button></a>
         <a ui-sref="edit"><button class="btn btn-default">Edit</button></a>
+        <button class="btn btn-default" ng-click="sideBarOpen()">Left Bar</button>
     </div>
 
     <div ui-view>
     </div>
+
+    <div data-panels="true"></div>
 
     <!-- our Javascript -->
     <script src="js/app.js"></script>
