@@ -63,7 +63,11 @@ body {
 }
 
 .top-margin {
-    margin-top: 50px;
+    margin-top: 80px;
+}
+
+.sidebar-margin { 
+    margin-top: 50px; 
 }
 
 .loginForm #email {
@@ -72,7 +76,7 @@ body {
 
 .searchBar {
     z-index: 0;
-    margin: 15px;
+    margin-bottom: 15px;
     text-align: center;
 }
 
