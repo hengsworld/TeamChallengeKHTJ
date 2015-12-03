@@ -4,31 +4,31 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 
 .config(['panelsProvider', '$stateProvider', function(panelsProvider, $stateProvider) {
     $stateProvider
-    .state('home', {
-        url: '/',
-        templateUrl: 'partials/home.html',
-        controller: 'TodoCtrl'
-    })
-    .state('edit', {
-        url: '/edit',
-        templateUrl: 'partials/edit.html',
-        controller: 'newNoteCtrl'
-    });
+        .state('home', {
+            url: '/',
+            templateUrl: 'partials/home.html',
+            controller: 'TodoCtrl'
+        })
+        .state('edit', {
+            url: '/edit',
+            templateUrl: 'partials/edit.html',
+            controller: 'newNoteCtrl'
+        });
 
     panelsProvider
-    .add({
-        id: 'sideBar',
-        position: 'left',
-        size: '700px',
-        templateUrl: 'partials/sideBar.html',
-        controller: 'sideBarCtrl'
-    });
+        .add({
+            id: 'sideBar',
+            position: 'left',
+            size: '700px',
+            templateUrl: 'partials/sideBar.html',
+            controller: 'sideBarCtrl'
+        });
 }])
 
 // parent controller that houses all the ui-views
 // put all global functions and variables here to access them from
 // the other ui-views
-.controller('TodoCtrl', ['$scope', '$uibModal', '$firebaseAuth', '$firebaseArray', '$firebaseObject', '$stateParams', 'panels', function ($scope, $uibModal, $firebaseAuth, $firebaseArray, $firebaseObject, $stateParams, panels) {
+.controller('TodoCtrl', ['$scope', '$uibModal', '$firebaseAuth', '$firebaseArray', '$firebaseObject', '$stateParams', 'panels', function($scope, $uibModal, $firebaseAuth, $firebaseArray, $firebaseObject, $stateParams, panels) {
 
     //reference to the app
     var ref = new Firebase("https://khtj-todo-list.firebaseio.com/");
@@ -39,7 +39,9 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
     //reference to a value in the JSON in the Sky
     var valueRef = ref.child('TodoList');
     if (valueRef === undefined) {
-        ref.push().set({'TodoList': []});
+        ref.push().set({
+            'TodoList': []
+        });
         valueRef = ref.child('TodoList');
     }
     $scope.list = $firebaseArray(valueRef);
@@ -49,14 +51,14 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         console.log("creating user " + email);
         //pass in an object with the new 'email' and 'password'
         Auth.$createUser({
-            'email': email,
-            'password': password
-        })
-        .then($scope.signIn)
-        .catch(function(error){
-            //error handling (called on the promise)
-            console.log(error);
-        })
+                'email': email,
+                'password': password
+            })
+            .then($scope.signIn)
+            .catch(function(error) {
+                //error handling (called on the promise)
+                console.log(error);
+            })
     };
 
     //separate signIn function
@@ -67,7 +69,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             'password': password
         });
         return promise; //return promise so we can *chain promises*
-                        //and call .then() on returned value
+        //and call .then() on returned value
     };
 
     //Make LogOut function available to views
@@ -77,11 +79,10 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 
     //Any time auth status updates, set the userId so we know
     Auth.$onAuth(function(authData) {
-        if(authData) { //if we are authorized
+        if (authData) { //if we are authorized
             $scope.userId = authData.uid;
             $scope.userName = authData.password.email;
-        }
-        else {
+        } else {
             $scope.userId = undefined;
         }
     });
@@ -89,19 +90,19 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
     //Test if already logged in (when page load)
     var authData = Auth.$getAuth(); //get if we're authorized
     $scope.loggedIn = authData; // easy variable to test if logged in
-    if(authData) {
+    if (authData) {
         $scope.userId = authData.uid;
     }
 
     // opens the login modal
-    $scope.open = function () {
+    $scope.open = function() {
 
         var modalInstance = $uibModal.open({
             animation: true,
             templateUrl: 'partials/login-modal.html',
             controller: 'ModalInstanceCtrl',
-            scope: $scope   // pass in the parent scope, so that functions
-                            // are availible to be called from here
+            scope: $scope // pass in the parent scope, so that functions
+                // are availible to be called from here
         });
 
     }
@@ -118,7 +119,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 }])
 
 // separate controller for the edit page
-.controller('newNoteCtrl', ['$scope', function ($scope) {
+.controller('newNoteCtrl', ['$scope', function($scope) {
 
     // creates new note and appends it to firebase cloud Json
     $scope.newNote = function() {
@@ -134,7 +135,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 
 }])
 
-.controller('sideBarCtrl', ['$scope', 'panels', function ($scope, panels) {
+.controller('sideBarCtrl', ['$scope', 'panels', function($scope, panels) {
 
     $scope.$on('leftBarOpen', function(event, args) {
         console.log('received');
@@ -144,11 +145,11 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 }])
 
 // separate controller for the login modal
-.controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+.controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance) {
 
     // either signUp or signIn was pressed. Determines which was pressed and calls
     // the appropriate method to use. Also closes modal.
-    $scope.ok = function (messageType) {
+    $scope.ok = function(messageType) {
         $uibModalInstance.close();
         if (messageType == 'signup') {
             $scope.signUp($scope.email, $scope.password);
@@ -158,7 +159,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
     };
 
     // closes modal
-    $scope.cancel = function () {
+    $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
 }]);

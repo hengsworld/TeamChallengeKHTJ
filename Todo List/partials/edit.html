@@ -1,8 +1,17 @@
-<div class="top-margin">
-	<form name="newList">
-		<input placeholder="Title..." name="title" id="title" ng-model="title">
-		<br>
-		<textarea placeholder="Body..." name="body" ng-model="body" rows="5" cols="50"></textarea>
-		<button ng-click="newNote()">Save</button>
-	</form>
+<div class="container">
+    <div class="top-margin">
+        <h2>Add Notes</h2>
+        <form name="newList">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="title" class="form-control" id="title"></input>
+            </div>
+            <div class=" form-group ">
+                <label for="content ">Content</label>
+                <textarea rows="4 " cols="50 " class="form-control " id="content "></textarea>
+            </div>
+            <button ng-click="newNote() " id="add " class="btn btn-primary " type="button ">Add</button>
+            <p>
+        </form>
+    </div>
 </div>
