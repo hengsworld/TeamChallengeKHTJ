@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Heng, Kevin, Jessica, Tyler">
     <meta name="description" content="Simple Todo list sharing web application">
-
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <!-- Angular Panels CSS -->
@@ -34,21 +33,21 @@
 </head>
 
 <body ng-app="TodoApp" ng-controller="TodoCtrl" class="container">
-    
     <div class="nav-bar">
         <button class="btn btn-default navbar-right" ng-hide="userId" ng-click="open()">Login</button>
         <button class="btn btn-default navbar-right" ng-show="userId" ng-click="logOut()">Log Out</button>
-        <a ui-sref="home"><button class="btn btn-default">Home</button></a>
-        <a ui-sref="edit"><button class="btn btn-default">Edit</button></a>
+        <a ui-sref="home">
+            <button class="btn btn-default">Home</button>
+        </a>
+        <a ui-sref="edit">
+            <button class="btn btn-default">Edit</button>
+        </a>
         <button class="btn btn-default" ng-click="sideBarOpen()">Left Bar</button>
     </div>
-
     <main>
-    <div ui-view></div>
+        <div ui-view></div>
     </main>
-
     <div data-panels="true"></div>
-
     <!-- our Javascript -->
     <script src="js/app.js"></script>
 </body>

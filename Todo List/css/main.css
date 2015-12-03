@@ -6,14 +6,16 @@ body {
 }
 
 .nav-bar {
+    z-index: 10000;
     position: fixed;
     background-color: black;
     width: 100%;
     left: 0;
     right: 0;
     height: 50px;
-    opacity: .8;
+    opacity: 1;
 }
+
 .nav-bar .btn {
     height: 30px;
     margin-left: 5px;
@@ -21,6 +23,7 @@ body {
     width: 80px;
     padding: 5px;
 }
+
 .navbar-right {
     margin-right: 5px;
 }
@@ -30,37 +33,56 @@ body {
     background-color: #dbdce3;
     padding: 10px;
 }
-.note h1 { margin-top: 10px }
+
+.note h1 {
+    margin-top: 10px
+}
+
 .note h2 {
     font-size: 16px;
     margin-top: 10px;
     text-indent: 20px
 }
-.note p { font-size: 19px }
+
+.note p {
+    font-size: 19px
+}
+
 .note footer {
     font-size: 15px;
     text-align: right;
 }
 
-.pane-head { text-align: right; }
+.pane-head {
+    text-align: right;
+}
 
-.top-margin { margin-top: 80px; }
+.top-margin {
+    margin-top: 80px;
+}
 
-.loginForm #email { margin-bottom: 5px; }
+.loginForm #email {
+    margin-bottom: 5px;
+}
 
-.searchBar { 
-    position: relative; 
+.searchBar {
+    z-index: 0;
+    /*position: relative;*/
     margin-bottom: 15px;
     text-align: center;
 }
-.searchBar input { 
-    text-indent: 40px; 
+
+.searchBar input {
+    z-index: 0;
+    text-indent: 40px;
     width: 50%;
     border-radius: 20px;
     border: 1px solid black;
     height: 40px;
 }
+
 .searchBar .fa-search {
+    z-index: 0;
     position: absolute;
     color: silver;
     font-size: 1.5em;

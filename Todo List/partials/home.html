@@ -1,12 +1,11 @@
 <form name="noteSearch" class="row form-inline top-margin">
-	<!-- Note search filter-->
-	<div class="searchBar">
-		<span class="fa fa-search"></span>
-		<input name="query" placeholder="Search Notes" id="search" ng-model="searchQuery">
-	</div>
-</form> 
-
-<div ng-repeat="item in list | orderBy: date | filter:searchQuery">
+    <!-- Note search filter-->
+    <div class="searchBar">
+        <i class="fa fa-search"></i>
+        <input name="query" placeholder="Search Notes" id="search" ng-model="searchQuery">
+    </div>
+</form>
+<div ng-repeat="item in list | orderBy: 'date' | filter:searchQuery">
     <div class="note">
         <h1>{{item.title}}</h1>
         <h2>By: {{item.author}}</h2>
