@@ -1,22 +1,22 @@
 <div class="modal-header">
-    <h3 class="modal-title">Login!</h3>
+    <h3 class="modal-title">Login or Create an Account!</h3>
 </div>
 <div class="modal-body">
     <div ng-show="loggedIn">
 
     </div>
     <div ng-show="!loggedIn">
-        <form name="loginForm">
+        <form class="loginForm" name="loginForm">
             <label for="email">Email:</label>
-            <input name="email" ng-model="email">
+            <input type="text" id="email" name="email" size="35" ng-model="email">
             <br>
             <label for="password">Password:</label>
-            <input name="password" ng-model="password">
+            <input type="text" id="password" name="password" size="20" ng-model="password">
         </form>
     </div>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok('signup')">Sign Up</button>
     <button class="btn btn-primary" type="button" ng-click="ok('login')">Log In</button>
+    <button class="btn btn-primary" type="button" ng-click="ok('signup')">Sign Up</button>
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 </div>

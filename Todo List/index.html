@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="css/angular.panels.css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Google Font -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oxygen:400,700);
+">
     <!-- our CSS -->
     <link rel="stylesheet" href="css/main.css" />
     <!-- Angular -->
@@ -33,15 +36,16 @@
 <body ng-app="TodoApp" ng-controller="TodoCtrl" class="container">
     
     <div class="nav-bar">
-        <button class="btn btn-default" ng-hide="userId" ng-click="open()">Login</button>
-        <button class="btn btn-default" ng-show="userId" ng-click="logOut()">Log Out</button>
+        <button class="btn btn-default navbar-right" ng-hide="userId" ng-click="open()">Login</button>
+        <button class="btn btn-default navbar-right" ng-show="userId" ng-click="logOut()">Log Out</button>
         <a ui-sref="home"><button class="btn btn-default">Home</button></a>
         <a ui-sref="edit"><button class="btn btn-default">Edit</button></a>
         <button class="btn btn-default" ng-click="sideBarOpen()">Left Bar</button>
     </div>
 
-    <div ui-view>
-    </div>
+    <main>
+    <div ui-view></div>
+    </main>
 
     <div data-panels="true"></div>
 
