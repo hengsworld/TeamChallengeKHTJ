@@ -4,7 +4,6 @@
 		<span class="fa fa-search"></span>
 		<input name="query" placeholder="Search Notes" id="search" ng-model="searchQuery">
 	</div>
-
 </form> 
 
 <div ng-repeat="item in list | orderBy: date | filter:searchQuery">
