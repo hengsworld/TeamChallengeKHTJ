@@ -32,6 +32,7 @@ body {
     /*border: 1px solid black;*/
     background-color: #dbdce3;
     padding: 10px;
+    margin-bottom: 15px;
 }
 
 .note h1 {
@@ -53,12 +54,16 @@ body {
     text-align: right;
 }
 
+.side-panel {
+    z-index: 20000;
+}
 .pane-head {
     text-align: right;
+    /*z-index: 20000;*/
 }
 
 .top-margin {
-    margin-top: 80px;
+    margin-top: 50px;
 }
 
 .loginForm #email {
@@ -67,8 +72,7 @@ body {
 
 .searchBar {
     z-index: 0;
-    /*position: relative;*/
-    margin-bottom: 15px;
+    margin: 15px;
     text-align: center;
 }
 
