@@ -6,10 +6,11 @@
     </div>
 </form>
 <div ng-repeat="item in list | orderBy: 'date' | filter:searchQuery">
-    <div class="note">
+    <div class="note ">
         <h1>{{item.title}}</h1>
         <h2>By: {{item.author}}</h2>
         <p>{{item.body}}</p>
+        <p>{{item.tagText}}</p>
         <footer>{{formatTime(item.time)}}</footer>
     </div>
 </div>
