@@ -5,12 +5,13 @@
         <input name="query" placeholder="Search Notes" id="search" ng-model="searchQuery">
     </div>
 </form>
-<div ng-repeat="item in list | orderBy: 'date' | filter:searchQuery">
+<div ng-repeat="item in list | orderBy: '-time' | filter:searchQuery">
     <div class="note ">
         <h1>{{item.title}}</h1>
         <h2>By: {{item.author}}</h2>
         <p>{{item.body}}</p>
         <p>{{item.tagText}}</p>
         <footer>{{formatTime(item.time)}}</footer>
+        <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})"><button ng-click="getKey(item)">Edit</button></a>
     </div>
 </div>

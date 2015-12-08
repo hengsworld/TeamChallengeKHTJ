@@ -13,6 +13,11 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             url: '/edit',
             templateUrl: 'partials/edit.html',
             controller: 'newNoteCtrl'
+        })
+        .state('re-edit', {
+            url: '/edit/{id}',
+            templateUrl: 'partials/edit.html',
+            controller: 'newNoteCtrl'
         });
 
     panelsProvider
@@ -116,10 +121,24 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         return new Date(time).toLocaleString();
     }
 
+    $scope.getKey = function(item) {
+        var key = $scope.list.$keyAt(item);
+        console.log(key);
+        console.log($scope.list.$indexFor(key));
+    }
+
 }])
 
 // separate controller for the edit page
-.controller('newNoteCtrl', ['$scope', function($scope) {
+.controller('newNoteCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+
+        $scope.id = $stateParams.id;
+        if ($scope.id != undefined) {
+            $scope.title = $scope.list[$scope.id].title;
+            $scope.body = $scope.list[$scope.id].body;
+            $scope.tagText = $scope.list[$scope.id].tagText;
+            var author = $scope.list[$scope.id].author;
+        }
 
         // creates new note and appends it to firebase cloud Json
         $scope.newNote = function() {
@@ -133,6 +152,17 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             };
             console.log(newItem)
             $scope.$parent.list.$add(newItem);
+            $scope.$parent.list.$save().then(function(ref) {
+                ref.key() === obj.$id; // true
+            }, function(error) {
+                console.log("Error:", error);
+            });
+        }
+
+        $scope.updateNote = function() {
+            $scope.list[$scope.id].title = $scope.title;
+            $scope.list[$scope.id].body = $scope.body;
+            $scope.list[$scope.id].tagText = $scope.tagText;
             $scope.$parent.list.$save();
         }
         $scope.inputTags = [];

@@ -8,7 +8,7 @@
             </div>
             <div class=" form-group ">
                 <label for="content ">Content</label>
-                <textarea rows="4 " cols="50 " class="form-control " id="content " ng-model="body"></textarea>
+                <textarea rows="4" cols="50" class="form-control" id="content" ng-model="body"></textarea>
             </div>
             <!-- Tagging format -->
             <div><b>tags</b></div>
@@ -19,7 +19,8 @@
                 <input type="text" data-tag-input="" data-ng-model="tagText" data-ng-style="{width: inputWidth}" data-new-tag="addTag()" data-delete-tag="deleteTag()">
             </div>
             <p></p>
-            <button ng-click="newNote() " id="add " class="btn btn-primary " type="button ">Add</button>
+            <button ng-click="newNote()" id="add" class="btn btn-primary" type="button" ng-hide="id">Add</button>
+            <button ng-click="updateNote()" id="update" class="btn btn-primary" type="button" ng-show="id">Save</button>
             <p>
         </form>
     </div>

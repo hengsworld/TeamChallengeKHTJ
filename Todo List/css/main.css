@@ -14,6 +14,8 @@ body {
     right: 0;
     height: 50px;
     opacity: 1;
+    padding-right: 10px;
+    padding-left: 5px;
 }
 
 .nav-bar .btn {
@@ -25,7 +27,7 @@ body {
 }
 
 .navbar-right {
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .note {
