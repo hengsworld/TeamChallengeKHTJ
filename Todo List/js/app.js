@@ -2,7 +2,7 @@
 
 angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'firebase'])
 
-.config(['panelsProvider', '$stateProvider', function(panelsProvider, $stateProvider) {
+.config(['panelsProvider', '$stateProvider', '$urlRouterProvider', function(panelsProvider, $stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: '/',
@@ -28,6 +28,8 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             templateUrl: 'partials/sideBar.html',
             controller: 'sideBarCtrl'
         });
+
+     $urlRouterProvider.otherwise('/#');
 }])
 
 // parent controller that houses all the ui-views

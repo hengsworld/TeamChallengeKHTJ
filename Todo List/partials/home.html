@@ -12,7 +12,7 @@
         <p>{{item.body}}</p>
         <p>{{item.tagText}}</p>
         <footer>{{formatTime(item.time)}}</footer>
-        <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})"><button ng-click="getKey(item)">Edit</button></a>
-        <button onclick="deleteReview()" type="button" class="deleteReviewButton">Delete</button>
+        <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})" ng-show="userName == item.author"><button ng-click="getKey(item)">Edit</button></a>
+        <button onclick="deleteReview()" type="button" class="deleteReviewButton" ng-show="userName == item.author">Delete</button>
     </div>
 </div>
