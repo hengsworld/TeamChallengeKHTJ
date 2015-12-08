@@ -142,50 +142,51 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 // separate controller for the edit page
 .controller('newNoteCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
 
-        $scope.id = $stateParams.id;
-        if ($scope.id != undefined) {
-            $scope.title = $scope.list[$scope.id].title;
-            $scope.body = $scope.list[$scope.id].body;
-            $scope.tagText = $scope.list[$scope.id].tagText;
-            var author = $scope.list[$scope.id].author;
+    $scope.id = $stateParams.id;
+    if ($scope.id != undefined) {
+        $scope.title = $scope.list[$scope.id].title;
+        $scope.body = $scope.list[$scope.id].body;
+        $scope.tagText = $scope.list[$scope.id].tagText;
+        var author = $scope.list[$scope.id].author;
+    }
+
+    // creates new note and appends it to firebase cloud Json
+    $scope.newNote = function() {
+        var newItem = {
+            title: $scope.title,
+            body: $scope.body,
+            tagText: $scope.tagText,
+            author: $scope.userName,
+
+            time: Firebase.ServerValue.TIMESTAMP
+        };
+        console.log(newItem)
+        $scope.$parent.list.$add(newItem);
+        $scope.$parent.list.$save();
+    }
+
+    $scope.editNote = function() {
+        $scope.$parent.list[$scope.id].title = $scope.title;
+        $scope.$parent.list[$scope.id].body = $scope.body;
+        $scope.$parent.list[$scope.id].tagText = $scope.tagText;
+        $scope.$parent.list.$save($scope.$parent.list[$scope.id]);
+    }
+
+    $scope.inputTags = [];
+
+    $scope.addTag = function() {
+        if ($scope.tagText.length == 0) {
+            return;
         }
+        $scope.inputTags.push({
+            name: $scope.tagText
+        });
+        $scope.tagText = '';
+    }
 
-        // creates new note and appends it to firebase cloud Json
-        $scope.newNote = function() {
-            var newItem = {
-                title: $scope.title,
-                body: $scope.body,
-                tagText: $scope.tagText,
-                author: $scope.userName,
-                time: Firebase.ServerValue.TIMESTAMP
-            };
-            console.log(newItem)
-            $scope.$parent.list.$add(newItem);
-            $scope.$parent.list.$save();
-        }
-
-        $scope.editNote = function() {
-            $scope.$parent.list[$scope.id].title = $scope.title;
-            $scope.$parent.list[$scope.id].body = $scope.body;
-            $scope.$parent.list[$scope.id].tagText = $scope.tagText;
-            $scope.$parent.list.$save($scope.$parent.list[$scope.id]);
-        }
-
-        $scope.inputTags = [];
-
-        $scope.addTag = function() {
-            if ($scope.tagText.length == 0) {
-                return;
-            }
-
-            $scope.inputTags.push({
-                name: $scope.tagText
-            });
-            $scope.tagText = '';
-        }
 
 }])
-   
+
 
 .controller('sideBarCtrl', ['$scope', 'panels', function($scope, panels) {
 
