@@ -164,7 +164,22 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             $scope.list[$scope.id].body = $scope.body;
             $scope.list[$scope.id].tagText = $scope.tagText;
             $scope.$parent.list.$save();
+            // emptying the array
+            $scope.title = ' ';
+            $scope.body = ' ';
+            $scope.tagText = ' ';
+            $scope.userName = '';
+
         }
+
+        $scope.deleteReview = function() {
+            $scope.title.$remove;
+            $scope.body.$remove;
+            $scope.tagText.$remove;
+            $scope.userName.$remove;
+
+        }
+
         $scope.inputTags = [];
 
         $scope.addTag = function() {
