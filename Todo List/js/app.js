@@ -61,6 +61,12 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             })
     };
 
+    // if trash is clicked, delete review
+       $scope.delete = function(item){
+            var index = $scope.list.indexOf(item);
+            $scope.list.splice(index, 1);
+       };
+
     //separate signIn function
     $scope.signIn = function(email, password) {
         console.log(email);
@@ -128,7 +134,6 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
                 body: $scope.body,
                 tagText: $scope.tagText,
                 author: $scope.userName,
-
                 time: Firebase.ServerValue.TIMESTAMP
             };
             console.log(newItem)
