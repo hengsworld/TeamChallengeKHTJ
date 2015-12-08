@@ -152,24 +152,23 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             };
             console.log(newItem)
             $scope.$parent.list.$add(newItem);
-            $scope.$parent.list.$save().then(function(ref) {
-                ref.key() === obj.$id; // true
-            }, function(error) {
-                console.log("Error:", error);
-            });
+            $scope.$parent.list.$save();
         }
 
         $scope.updateNote = function() {
-            $scope.list[$scope.id].title = $scope.title;
-            $scope.list[$scope.id].body = $scope.body;
-            $scope.list[$scope.id].tagText = $scope.tagText;
-            $scope.$parent.list.$save();
             // emptying the array
             $scope.title = ' ';
             $scope.body = ' ';
             $scope.tagText = ' ';
             $scope.userName = '';
 
+        }
+
+        $scope.editNote = function() {
+            $scope.$parent.list[$scope.id].title = $scope.title;
+            $scope.$parent.list[$scope.id].body = $scope.body;
+            $scope.$parent.list[$scope.id].tagText = $scope.tagText;
+            $scope.$parent.list.$save($scope.$parent.list[$scope.id]);
         }
 
         $scope.deleteReview = function() {
