@@ -2,10 +2,10 @@
     <h3 class="modal-title">Login or Create an Account!</h3>
 </div>
 <div class="modal-body">
-    <div ng-show="loggedIn">
-
+    <div class="error" ng-show="error">
+        {{$scope.error}}
     </div>
-    <div ng-show="!loggedIn">
+    <div>
         <form class="loginForm" name="loginForm">
             <label for="email">Email:</label>
             <input type="text" id="email" name="email" size="35" ng-model="email">

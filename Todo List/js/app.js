@@ -57,15 +57,18 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
     $scope.signUp = function(email, password) {
         console.log("creating user " + email);
         //pass in an object with the new 'email' and 'password'
+        var logError = undefined;
         Auth.$createUser({
                 'email': email,
                 'password': password
             })
-            .then($scope.signIn)
+            .then($scope.signIn(email, password))
             .catch(function(error) {
                 //error handling (called on the promise)
+                logError = error;
                 console.log(error);
             })
+        return logError;
     };
 
     //separate signIn function
@@ -259,12 +262,12 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
     // either signUp or signIn was pressed. Determines which was pressed and calls
     // the appropriate method to use. Also closes modal.
     $scope.ok = function(messageType) {
-        $uibModalInstance.close();
         if (messageType == 'signup') {
             $scope.signUp($scope.email, $scope.password);
         } else if (messageType == 'login') {
             $scope.signIn($scope.email, $scope.password);
         }
+        $uibModalInstance.close();
     };
 
     // closes modal
