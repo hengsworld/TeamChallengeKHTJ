@@ -13,6 +13,11 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             url: '/edit',
             templateUrl: 'partials/edit.html',
             controller: 'newNoteCtrl'
+        })
+        .state('re-edit', {
+            url: '/edit/{id}',
+            templateUrl: 'partials/edit.html',
+            controller: 'newNoteCtrl'
         });
 
     panelsProvider
@@ -65,6 +70,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
        $scope.delete = function(item){
             var index = $scope.list.indexOf(item);
             $scope.list.splice(index, 1);
+            
        };
 
     //separate signIn function
@@ -122,10 +128,24 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         return new Date(time).toLocaleString();
     }
 
+    $scope.getKey = function(item) {
+        var key = $scope.list.$keyAt(item);
+        console.log(key);
+        console.log($scope.list.$indexFor(key));
+    }
+
 }])
 
 // separate controller for the edit page
-.controller('newNoteCtrl', ['$scope', function($scope) {
+.controller('newNoteCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+
+        $scope.id = $stateParams.id;
+        if ($scope.id != undefined) {
+            $scope.title = $scope.list[$scope.id].title;
+            $scope.body = $scope.list[$scope.id].body;
+            $scope.tagText = $scope.list[$scope.id].tagText;
+            var author = $scope.list[$scope.id].author;
+        }
 
         // creates new note and appends it to firebase cloud Json
         $scope.newNote = function() {
@@ -140,6 +160,31 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             $scope.$parent.list.$add(newItem);
             $scope.$parent.list.$save();
         }
+
+        $scope.updateNote = function() {
+            // emptying the array
+            $scope.title = ' ';
+            $scope.body = ' ';
+            $scope.tagText = ' ';
+            $scope.userName = '';
+
+        }
+
+        $scope.editNote = function() {
+            $scope.$parent.list[$scope.id].title = $scope.title;
+            $scope.$parent.list[$scope.id].body = $scope.body;
+            $scope.$parent.list[$scope.id].tagText = $scope.tagText;
+            $scope.$parent.list.$save($scope.$parent.list[$scope.id]);
+        }
+
+        $scope.deleteReview = function() {
+            $scope.title.$remove;
+            $scope.body.$remove;
+            $scope.tagText.$remove;
+            $scope.userName.$remove;
+
+        }
+
         $scope.inputTags = [];
 
         $scope.addTag = function() {
