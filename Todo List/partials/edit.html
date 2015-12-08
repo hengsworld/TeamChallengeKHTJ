@@ -19,8 +19,8 @@
                 <input type="text" data-tag-input="" data-ng-model="tagText" data-ng-style="{width: inputWidth}" data-new-tag="addTag()" data-delete-tag="deleteTag()">
             </div>
             <p></p>
-            <button ng-click="newNote()" id="add" class="btn btn-primary" type="button" ng-hide="id">Add</button>
-            <button ng-click="editNote()" id="edit" class="btn btn-primary" type="button" ng-show="id">Save</button>
+            <a ui-sref="home"><button ng-click="newNote()" id="add" class="btn btn-primary" type="button" ng-hide="id">Add</button></a>
+            <a ui-sref="home"><button ng-click="editNote()" id="edit" class="btn btn-primary" type="button" ng-show="id">Save</button></a>
             <p>
         </form>
     </div>
