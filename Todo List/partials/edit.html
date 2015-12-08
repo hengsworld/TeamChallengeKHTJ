@@ -11,12 +11,11 @@
                 <textarea rows="4" cols="50" class="form-control" id="content" ng-model="body"></textarea>
             </div>
             <!-- Tagging format -->
-            <div><b>tags</b></div>
-            <div class="tag-input-ctn">
+            <div><b>Tags</b></div>
+            <div class="tag-input-ctn form-group">
                 <div data-ng-repeat="(key, tag) in inputTags" class="input-tag"> {{ tag.name }}
-                    <div class="delete-tag" data-ng-click="deleteTag(key)">&times;</div>
                 </div>
-                <input type="text" data-tag-input="" data-ng-model="tagText" data-ng-style="{width: inputWidth}" data-new-tag="addTag()" data-delete-tag="deleteTag()">
+                <input type="text" class="form-control" data-ng-model="tagText" data-new-tag="addTag()">
             </div>
             <p></p>
             <a ui-sref="home"><button ng-click="newNote()" id="add" class="btn btn-primary" type="button" ng-hide="id">Add</button></a>

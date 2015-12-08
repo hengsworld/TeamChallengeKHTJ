@@ -73,9 +73,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 
     // if trash is clicked, delete review
        $scope.delete = function(item){
-            var index = $scope.list.indexOf(item);
-            $scope.list.splice(index, 1);
-            
+            $scope.list.$remove(item);
        };
 
     //separate signIn function
@@ -166,28 +164,11 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             $scope.$parent.list.$save();
         }
 
-        $scope.updateNote = function() {
-            // emptying the array
-            $scope.title = ' ';
-            $scope.body = ' ';
-            $scope.tagText = ' ';
-            $scope.userName = '';
-
-        }
-
         $scope.editNote = function() {
             $scope.$parent.list[$scope.id].title = $scope.title;
             $scope.$parent.list[$scope.id].body = $scope.body;
             $scope.$parent.list[$scope.id].tagText = $scope.tagText;
             $scope.$parent.list.$save($scope.$parent.list[$scope.id]);
-        }
-
-        $scope.deleteReview = function() {
-            $scope.title.$remove;
-            $scope.body.$remove;
-            $scope.tagText.$remove;
-            $scope.userName.$remove;
-
         }
 
         $scope.inputTags = [];
@@ -203,54 +184,8 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             $scope.tagText = '';
         }
 
-        $scope.deleteTag = function(key) {
-            if ($scope.inputTags.length > 0 &&
-                $scope.tagText.length == 0 &&
-                key === undefined) {
-                $scope.inputTags.pop();
-            } else if (key != undefined) {
-                $scope.inputTags.splice(key, 1);
-            }
-        }
-
-    }])
-    .directive('tagInput', function() {
-        return {
-            restrict: 'A',
-            link: function(scope, element, attrs) {
-                scope.inputWidth = 20;
-
-                // Watch for changes in text field
-                scope.$watch(attrs.ngModel, function(value) {
-                    if (value != undefined) {
-                        var tempEl = $('<span>' + value + '</span>').appendTo('body');
-                        scope.inputWidth = tempEl.width() + 5;
-                        tempEl.remove();
-                    }
-                });
-
-                element.bind('keydown', function(e) {
-                    if (e.which == 9) {
-                        e.preventDefault();
-                    }
-
-                    if (e.which == 8) {
-                        scope.$apply(attrs.deleteTag);
-                    }
-                });
-
-                element.bind('keyup', function(e) {
-                    var key = e.which;
-
-                    // Tab or Enter pressed 
-                    if (key == 9 || key == 13) {
-                        e.preventDefault();
-                        scope.$apply(attrs.newTag);
-                    }
-                });
-            }
-        }
-    })
+}])
+   
 
 .controller('sideBarCtrl', ['$scope', 'panels', function($scope, panels) {
 
