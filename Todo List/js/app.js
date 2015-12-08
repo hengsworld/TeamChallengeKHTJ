@@ -2,7 +2,7 @@
 
 angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'firebase'])
 
-.config(['panelsProvider', '$stateProvider', function(panelsProvider, $stateProvider) {
+.config(['panelsProvider', '$stateProvider', '$urlRouterProvider', function(panelsProvider, $stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: '/',
@@ -28,6 +28,8 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             templateUrl: 'partials/sideBar.html',
             controller: 'sideBarCtrl'
         });
+
+     $urlRouterProvider.otherwise('/#');
 }])
 
 // parent controller that houses all the ui-views
@@ -55,16 +57,26 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
     $scope.signUp = function(email, password) {
         console.log("creating user " + email);
         //pass in an object with the new 'email' and 'password'
+        var logError = undefined;
         Auth.$createUser({
                 'email': email,
                 'password': password
             })
-            .then($scope.signIn)
+            .then($scope.signIn(email, password))
             .catch(function(error) {
                 //error handling (called on the promise)
+                logError = error;
                 console.log(error);
             })
+        return logError;
     };
+
+    // if trash is clicked, delete review
+       $scope.delete = function(item){
+            var index = $scope.list.indexOf(item);
+            $scope.list.splice(index, 1);
+            
+       };
 
     //separate signIn function
     $scope.signIn = function(email, password) {
@@ -132,6 +144,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 // separate controller for the edit page
 .controller('newNoteCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
 
+<<<<<<< HEAD
     $scope.id = $stateParams.id;
     if ($scope.id != undefined) {
         $scope.title = $scope.list[$scope.id].title;
@@ -139,6 +152,29 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         $scope.tagText = $scope.list[$scope.id].tagText;
         var author = $scope.list[$scope.id].author;
     }
+=======
+        $scope.id = $stateParams.id;
+        if ($scope.id != undefined) {
+            $scope.title = $scope.list[$scope.id].title;
+            $scope.body = $scope.list[$scope.id].body;
+            $scope.tagText = $scope.list[$scope.id].tagText;
+            var author = $scope.list[$scope.id].author;
+        }
+
+        // creates new note and appends it to firebase cloud Json
+        $scope.newNote = function() {
+            var newItem = {
+                title: $scope.title,
+                body: $scope.body,
+                tagText: $scope.tagText,
+                author: $scope.userName,
+                time: Firebase.ServerValue.TIMESTAMP
+            };
+            console.log(newItem)
+            $scope.$parent.list.$add(newItem);
+            $scope.$parent.list.$save();
+        }
+>>>>>>> 0616641830df1a952ff08920f36182841c8ec938
 
     // creates new note and appends it to firebase cloud Json
     $scope.newNote = function() {
@@ -211,12 +247,12 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
     // either signUp or signIn was pressed. Determines which was pressed and calls
     // the appropriate method to use. Also closes modal.
     $scope.ok = function(messageType) {
-        $uibModalInstance.close();
         if (messageType == 'signup') {
             $scope.signUp($scope.email, $scope.password);
         } else if (messageType == 'login') {
             $scope.signIn($scope.email, $scope.password);
         }
+        $uibModalInstance.close();
     };
 
     // closes modal

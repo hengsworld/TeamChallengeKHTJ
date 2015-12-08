@@ -5,14 +5,17 @@
         <input name="query" placeholder="Search Notes" id="search" ng-model="searchQuery">
     </div>
 </form>
+
 <div ng-repeat="item in list | orderBy: '-time' | filter:searchQuery">
     <div class="note ">
+        <i class="edit fa fa-pencil-square-o fa-lg"></i>
+        <i class="delete fa fa-trash fa-lg" ng-click="delete(item)"></i>
         <h1>{{item.title}}</h1>
         <h2>By: {{item.author}}</h2>
         <p>{{item.body}}</p>
         <p>{{item.tagText}}</p>
         <footer>{{formatTime(item.time)}}</footer>
-        <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})"><button ng-click="getKey(item)">Edit</button></a>
-        <button onclick="deleteReview()" type="button" class="deleteReviewButton">Delete</button>
+        <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})" ng-show="userName == item.author"><button ng-click="getKey(item)">Edit</button></a>
+        <button onclick="deleteReview()" type="button" class="deleteReviewButton" ng-show="userName == item.author">Delete</button>
     </div>
 </div>

@@ -37,6 +37,11 @@ body {
     margin-bottom: 15px;
 }
 
+.note i {
+    float: right;
+    padding: 5px;
+}
+
 .note h1 {
     margin-top: 10px
 }
