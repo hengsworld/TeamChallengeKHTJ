@@ -66,14 +66,13 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             .catch(function(error) {
                 return error;
             })
+        console.log(promise);
         return promise;
     };
 
     // if trash is clicked, delete review
        $scope.delete = function(item){
-            var index = $scope.list.indexOf(item);
-            $scope.list.splice(index, 1);
-            
+            $scope.list.$remove(item);
        };
 
     //separate signIn function
@@ -87,6 +86,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         .catch(function(error) {
             return error;
         });
+        console.log(promise);
         return promise;
     };
 
@@ -102,6 +102,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             $scope.userName = authData.password.email;
         } else {
             $scope.userId = undefined;
+            $scope.userName = undefined;
         }
     });
 
@@ -146,113 +147,68 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 // separate controller for the edit page
 .controller('newNoteCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
 
-        $scope.id = $stateParams.id;
-        if ($scope.id != undefined) {
-            $scope.title = $scope.list[$scope.id].title;
-            $scope.body = $scope.list[$scope.id].body;
-            $scope.tagText = $scope.list[$scope.id].tagText;
-            var author = $scope.list[$scope.id].author;
+   tinymce.init({
+   selector: 'textarea',
+   height: 200,
+   plugins: [
+    'advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table contextmenu paste code'
+   ],
+   toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+   content_css: [
+    '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+    '//www.tinymce.com/css/codepen.min.css'
+   ]
+   });
+
+   // $scope.tinymce.get('body').setContent('content');
+
+    $scope.id = $stateParams.id;
+    if ($scope.id != undefined) {
+        $scope.title = $scope.list[$scope.id].title;
+        $scope.body = $scope.list[$scope.id].body.tinymce().save();
+        $scope.tagText = $scope.list[$scope.id].tagText;
+        var author = $scope.list[$scope.id].author;
+    }
+
+    // creates new note and appends it to firebase cloud Json
+    $scope.newNote = function() {
+        var newItem = {
+            title: $scope.title,
+            body: $scope.body,
+            tagText: $scope.tagText,
+            author: $scope.userName,
+            // $('#content').tinymce().save();
+            time: Firebase.ServerValue.TIMESTAMP
+        };
+        console.log(newItem)
+        $scope.$parent.list.$add(newItem);
+        $scope.$parent.list.$save();
+    }
+
+    $scope.editNote = function() {
+        $scope.$parent.list[$scope.id].title = $scope.title;
+        $scope.$parent.list[$scope.id].body = $scope.body;
+        $scope.$parent.list[$scope.id].tagText = $scope.tagText;
+        $scope.$parent.list.$save($scope.$parent.list[$scope.id]);
+    }
+
+    $scope.inputTags = [];
+
+    $scope.addTag = function() {
+        if ($scope.tagText.length == 0) {
+            return;
         }
+        $scope.inputTags.push({
+            name: $scope.tagText
+        });
+        $scope.tagText = '';
+    }
 
-        // creates new note and appends it to firebase cloud Json
-        $scope.newNote = function() {
-            var newItem = {
-                title: $scope.title,
-                body: $scope.body,
-                tagText: $scope.tagText,
-                author: $scope.userName,
-                time: Firebase.ServerValue.TIMESTAMP
-            };
-            console.log(newItem)
-            $scope.$parent.list.$add(newItem);
-            $scope.$parent.list.$save();
-        }
 
-        $scope.updateNote = function() {
-            // emptying the array
-            $scope.title = ' ';
-            $scope.body = ' ';
-            $scope.tagText = ' ';
-            $scope.userName = '';
+}])
 
-        }
-
-        $scope.editNote = function() {
-            $scope.$parent.list[$scope.id].title = $scope.title;
-            $scope.$parent.list[$scope.id].body = $scope.body;
-            $scope.$parent.list[$scope.id].tagText = $scope.tagText;
-            $scope.$parent.list.$save($scope.$parent.list[$scope.id]);
-        }
-
-        $scope.deleteReview = function() {
-            $scope.title.$remove;
-            $scope.body.$remove;
-            $scope.tagText.$remove;
-            $scope.userName.$remove;
-
-        }
-
-        $scope.inputTags = [];
-
-        $scope.addTag = function() {
-            if ($scope.tagText.length == 0) {
-                return;
-            }
-
-            $scope.inputTags.push({
-                name: $scope.tagText
-            });
-            $scope.tagText = '';
-        }
-
-        $scope.deleteTag = function(key) {
-            if ($scope.inputTags.length > 0 &&
-                $scope.tagText.length == 0 &&
-                key === undefined) {
-                $scope.inputTags.pop();
-            } else if (key != undefined) {
-                $scope.inputTags.splice(key, 1);
-            }
-        }
-
-    }])
-    .directive('tagInput', function() {
-        return {
-            restrict: 'A',
-            link: function(scope, element, attrs) {
-                scope.inputWidth = 20;
-
-                // Watch for changes in text field
-                scope.$watch(attrs.ngModel, function(value) {
-                    if (value != undefined) {
-                        var tempEl = $('<span>' + value + '</span>').appendTo('body');
-                        scope.inputWidth = tempEl.width() + 5;
-                        tempEl.remove();
-                    }
-                });
-
-                element.bind('keydown', function(e) {
-                    if (e.which == 9) {
-                        e.preventDefault();
-                    }
-
-                    if (e.which == 8) {
-                        scope.$apply(attrs.deleteTag);
-                    }
-                });
-
-                element.bind('keyup', function(e) {
-                    var key = e.which;
-
-                    // Tab or Enter pressed 
-                    if (key == 9 || key == 13) {
-                        e.preventDefault();
-                        scope.$apply(attrs.newTag);
-                    }
-                });
-            }
-        }
-    })
 
 .controller('sideBarCtrl', ['$scope', 'panels', function($scope, panels) {
 
@@ -275,17 +231,22 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             $scope.signUp($scope.email, $scope.password)
             .then(function(error) {
                 $scope.loginError = error.message;
+            })
+            .then(function() {
+                if ($scope.loginError == undefined) {
+                    $uibModalInstance.close();
+                }
             });
         } else if (messageType == 'login') {
             $scope.signIn($scope.email, $scope.password)
             .then(function(error) {
                 $scope.loginError = error.message;
+            })
+            .then(function() {
+                if ($scope.loginError == undefined) {
+                    $uibModalInstance.close();
+                }
             });
-        }
-        if ($scope.loginError != undefined) {
-            $uibModalInstance.close();
-        } else {
-
         }
     };
 
