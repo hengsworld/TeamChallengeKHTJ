@@ -2,11 +2,11 @@
     <!-- Note search filter-->
     <div class="searchBar">
         <i class="fa fa-search"></i>
-        <input name="words" placeholder="Filter Your Notes" id="search" ng-model="searchWords">
+        <input name="notes" placeholder="Filter Your Notes" id="search" ng-model="searchNotes">
     </div>
 </form>
 
-<div ng-repeat="item in list | orderBy: '-time' | filter:searchWords" ng-if="userName == item.author">
+<div ng-repeat="item in list | orderBy: '-time' | filter:searchNotes" ng-if="userName == item.author">
     <div class="note ">
         <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})"><i class="edit fa fa-pencil-square-o fa-lg" ng-click="getKey(item)"></i></a>
         <i class="delete fa fa-trash fa-lg" ng-click="delete(item)"></i>
