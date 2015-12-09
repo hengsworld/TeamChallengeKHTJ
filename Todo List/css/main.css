@@ -26,6 +26,10 @@ body {
     padding: 5px;
 }
 
+.nav-bar .page-title {
+    color: white;
+}
+
 .navbar-right {
     margin-right: 10px;
 }
@@ -61,12 +65,14 @@ body {
     text-align: right;
 }
 
-.side-panel {
-    z-index: 20000;
-}
 .pane-head {
-    text-align: right;
+    float: right;
     /*z-index: 20000;*/
+}
+
+.page-title {
+    text-align: center;
+    font-weight: bold;
 }
 
 .top-margin {
@@ -75,6 +81,7 @@ body {
 
 .sidebar-margin { 
     margin-top: 50px; 
+
 }
 
 .loginForm #email {
@@ -108,53 +115,3 @@ body {
 }
 
 
-/*/*tagg*/
-
-/*.tag-input-ctn {
-    border: 1px solid #ccc;
-    padding: 2px 3px;
-    display: inline-block;
-    width: 500px;
-    border-radius: 3px;
-    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
-}
-
-.tag-input-ctn input {
-    display: inline-block;
-    float: left;
-    height: 18px;
-    padding: 0px;
-    font-size: 13px;
-    line-height: 18px;
-    color: black;
-    border: 0px;
-    margin: 2px;
-}
-
-.tag-input-ctn input:focus {
-    outline: 0;
-    box-shadow: 0px;
-}
-
-.tag-input-ctn .input-tag {
-    padding: 2px 4px;
-    line-height: 12px;
-    font-size: 11px;
-    background-color: #e3eaf6;
-    display: inline-block;
-    float: left;
-    border-radius: 2px;
-    margin: 2px 5px 2px 0px;
-    border: 1px solid #a9b6d2;
-}
-
-.tag-input-ctn .input-tag .delete-tag {
-    display: inline-block;
-    font-size: 12px;
-    cursor: pointer;
-    padding: 0px 2px;
-}
-
-.tag-input-ctn .input-tag .delete-tag:hover {
-    background-color: #96b4d2;
-}*/*/

@@ -1,14 +1,25 @@
-<div class="sidebar-margin">
-    <div class="pane-head">
-        <button type="button" class="btn btn-default" data-ng-click="panels.close();">
-            <i class="fa fa-times"></i>
+    <div class="sidebar-margin">
+        <button type="button" class="pane-head btn btn-default" data-ng-click="panels.close();">
+            <i class="fa fa-times fa-lg"></i>
         </button>
     </div>
-    <div>
-        <ul>
-            <a href="">
-                <li>Test 1</li>
-            </a>
-        </ul>
+
+    <div ng-controller="TodoCtrl">
+        <h1 class="page-title">NotesFeed</h1>
+        <div class="searchBar sidebar-margin">
+            <i class="fa fa-search"></i>
+            <input name="all" placeholder="Search for Tags" id="search" ng-model="searchAll">
+        </div>
+        <div ng-repeat="item in list | orderBy: '-time' | filter:searchAll">
+            <div class="note ">
+                <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})" ng-show="userName == item.author"><i class="edit fa fa-pencil-square-o fa-lg" ng-click="getKey(item)"></i></a>
+                <i class="delete fa fa-trash fa-lg" ng-click="delete(item)" ng-show="userName == item.author"></i>
+                <h1>{{item.title}}</h1>
+                <h2>By: {{item.author}}</h2>
+                <p>{{item.body}}</p>
+                <p>{{item.tagText}}</p>
+                <footer>{{formatTime(item.time)}}</footer>
+            </div>
+        </div>
     </div>
 </div>

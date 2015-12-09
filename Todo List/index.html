@@ -36,7 +36,7 @@
 </head>
 
 <body ng-app="TodoApp" ng-controller="TodoCtrl" class="container">
-    <div class="nav-bar">
+    <nav class="nav-bar">
         <button class="btn btn-default navbar-right" ng-hide="userId" ng-click="open()">Login</button>
         <button class="btn btn-default navbar-right" ng-show="userId" ng-click="logOut()">Log Out</button>
         <a ui-sref="home">
@@ -46,7 +46,7 @@
             <button class="btn btn-default">Create</button>
         </a>
         <button class="btn btn-default" ng-click="sideBarOpen()">Left Bar</button>
-    </div>
+    </nav>
     <main>
         <div ui-view></div>
     </main>
