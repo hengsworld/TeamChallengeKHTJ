@@ -1,3 +1,9 @@
+a, a:hover, a:focus, .delete, .delete:hover, .delete:focus {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
 body {
     font-family: Oxygen, Helvetica Neue, Helvetica, sans-serif;
     font-size: 16px;
