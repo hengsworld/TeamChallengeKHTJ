@@ -58,17 +58,15 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         console.log("creating user " + email);
         //pass in an object with the new 'email' and 'password'
         var logError = undefined;
-        Auth.$createUser({
+        var promise = Auth.$createUser({
                 'email': email,
                 'password': password
             })
             .then($scope.signIn(email, password))
             .catch(function(error) {
-                //error handling (called on the promise)
-                logError = error;
-                console.log(error);
+                return error;
             })
-        return logError;
+        return promise;
     };
 
     // if trash is clicked, delete review
@@ -84,9 +82,12 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         var promise = Auth.$authWithPassword({
             'email': email,
             'password': password
+        })
+        .then(authData)
+        .catch(function(error) {
+            return error;
         });
-        return promise; //return promise so we can *chain promises*
-        //and call .then() on returned value
+        return promise;
     };
 
     //Make LogOut function available to views
@@ -118,6 +119,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             animation: true,
             templateUrl: 'partials/login-modal.html',
             controller: 'ModalInstanceCtrl',
+            windowClass: 'full-modal',
             scope: $scope // pass in the parent scope, so that functions
                 // are availible to be called from here
         });
@@ -268,12 +270,23 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
     // either signUp or signIn was pressed. Determines which was pressed and calls
     // the appropriate method to use. Also closes modal.
     $scope.ok = function(messageType) {
+        $scope.loginError = undefined;
         if (messageType == 'signup') {
-            $scope.signUp($scope.email, $scope.password);
+            $scope.signUp($scope.email, $scope.password)
+            .then(function(error) {
+                $scope.loginError = error.message;
+            });
         } else if (messageType == 'login') {
-            $scope.signIn($scope.email, $scope.password);
+            $scope.signIn($scope.email, $scope.password)
+            .then(function(error) {
+                $scope.loginError = error.message;
+            });
         }
-        $uibModalInstance.close();
+        if ($scope.loginError != undefined) {
+            $uibModalInstance.close();
+        } else {
+
+        }
     };
 
     // closes modal

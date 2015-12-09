@@ -5,6 +5,10 @@ body {
     background-color: #E9EAEE;
 }
 
+.full-modal {
+    top: 10%;
+}
+
 .nav-bar {
     z-index: 10000;
     position: fixed;
