@@ -66,35 +66,6 @@ body {
     margin-bottom: 15px;
 }
 
-.note i {
-    float: right;
-    padding: 5px;
-}
-
-.note h1 {
-    margin-top: 10px
-}
-
-.note h2 {
-    font-size: 16px;
-    margin-top: 10px;
-    text-indent: 20px
-}
-
-.note p {
-    font-size: 19px
-}
-
-.note footer {
-    font-size: 15px;
-    text-align: right;
-}
-
-.pane-head {
-    float: right;
-    /*z-index: 20000;*/
-}
-
 .feed-title {
     text-align: center;
     font-weight: bold;
@@ -125,10 +96,6 @@ body {
     border-radius: 20px;
     border: 1px solid black;
     height: 40px;
-}
-
-.smallScreen {
-    font-size: 15px;
 }
 
 .searchBar .fa-search {

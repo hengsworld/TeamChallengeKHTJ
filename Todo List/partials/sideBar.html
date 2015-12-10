@@ -14,8 +14,8 @@
             <div class="note">
                 <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})" ng-show="userName == item.author"><i class="edit fa fa-pencil-square-o fa-lg" ng-click="getKey(item)"></i></a>
                 <i class="delete fa fa-trash fa-lg" ng-click="delete(item)" ng-show="userName == item.author"></i>
-                <h1>{{item.title}}</h1>
-                <h2>By: {{item.author}}</h2>
+                <h3>{{item.title}}</h3>
+                <h6>By: {{item.author}}</h6>
                 <hr>
                 <div ng-bind-html="renderHtml(item.body)"></div>
                 <p class="tags">Tags: {{item.tagText}}</p>
