@@ -24,7 +24,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         .add({
             id: 'sideBar',
             position: 'left',
-            size: Math.max(400, window.innerWidth / 4) + 'px',
+            size: Math.max(350, window.innerWidth / 4) + 'px',
             templateUrl: 'partials/sideBar.html',
             controller: 'sideBarCtrl'
         });
