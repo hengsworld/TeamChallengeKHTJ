@@ -136,6 +136,11 @@ body {
     padding-top: 20px;
 }
 
+.pane-head {
+    position: absolute;
+    right: 0px;
+}
+
 footer {
     font-size: 10px;
 }
