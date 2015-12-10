@@ -46,6 +46,7 @@ body {
     border: none;
 }
 
+
 /*.nav-bar img {
     padding-bottom: 10px;
 }*/
@@ -121,4 +122,20 @@ body {
     text-align: center;
     margin-left: 12px;
     margin-top: 7px;
+}
+
+.tags {
+    color: #ff0000;
+}
+
+.icon {
+    padding-top: 20px;
+}
+
+.icon1 {
+    padding-top: 20px;
+}
+
+footer {
+    font-size: 10px;
 }

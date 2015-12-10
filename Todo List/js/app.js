@@ -24,7 +24,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         .add({
             id: 'sideBar',
             position: 'left',
-            size: Math.max(300, window.innerWidth / 4) + 'px',
+            size: Math.max(300, window.innerWidth / 2) + 'px',
             templateUrl: 'partials/sideBar.html',
             controller: 'sideBarCtrl'
         });
@@ -71,21 +71,21 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
     };
 
     // if trash is clicked, delete review
-       $scope.delete = function(item){
-            $scope.list.$remove(item);
-       };
+    $scope.delete = function(item) {
+        $scope.list.$remove(item);
+    };
 
     //separate signIn function
     $scope.signIn = function(email, password) {
         console.log(email);
         var promise = Auth.$authWithPassword({
-            'email': email,
-            'password': password
-        })
-        .then(authData)
-        .catch(function(error) {
-            return error;
-        });
+                'email': email,
+                'password': password
+            })
+            .then(authData)
+            .catch(function(error) {
+                return error;
+            });
         console.log(promise);
         return promise;
     };
@@ -196,7 +196,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         mode: 'exact',
         inline: false,
         skin: 'lightgray',
-        theme : 'modern',
+        theme: 'modern',
         height: 300,
         content_css: 'css/tinymce.css',
         plugins: [
@@ -228,24 +228,24 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         $scope.loginError = undefined;
         if (messageType == 'signup') {
             $scope.signUp($scope.email, $scope.password)
-            .then(function(error) {
-                $scope.loginError = error.message;
-            })
-            .then(function() {
-                if ($scope.loginError == undefined) {
-                    $uibModalInstance.close();
-                }
-            });
+                .then(function(error) {
+                    $scope.loginError = error.message;
+                })
+                .then(function() {
+                    if ($scope.loginError == undefined) {
+                        $uibModalInstance.close();
+                    }
+                });
         } else if (messageType == 'login') {
             $scope.signIn($scope.email, $scope.password)
-            .then(function(error) {
-                $scope.loginError = error.message;
-            })
-            .then(function() {
-                if ($scope.loginError == undefined) {
-                    $uibModalInstance.close();
-                }
-            });
+                .then(function(error) {
+                    $scope.loginError = error.message;
+                })
+                .then(function() {
+                    if ($scope.loginError == undefined) {
+                        $uibModalInstance.close();
+                    }
+                });
         }
     };
 

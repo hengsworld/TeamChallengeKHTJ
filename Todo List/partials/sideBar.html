@@ -18,13 +18,19 @@
         </div>
         <div class="menu-notes container-fluid" ng-repeat="item in list | orderBy: '-time' | filter:searchAll">
             <div class="note">
-                <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})" ng-show="userName == item.author"><i class="edit fa fa-pencil-square-o fa-lg" ng-click="getKey(item)"></i></a>
-                <i class="delete fa fa-trash fa-lg" ng-click="delete(item)" ng-show="userName == item.author"></i>
-                <h3>{{item.title}}</h3>
+                <div class="row">
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <h3>{{item.title}}</h3>
+                    </div>
+                    <div class="icon1 col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})" ng-show="userName == item.author"><i class="editSide fa fa-pencil-square-o fa-lg" ng-click="getKey(item)"></i></a>
+                        <i class="deleteSide fa fa-trash fa-lg" ng-click="delete(item)" ng-show="userName == item.author"></i>
+                    </div>
+                </div>
                 <h6>By: {{item.author}}</h6>
                 <hr>
                 <div ng-bind-html="renderHtml(item.body)"></div>
-                <p class="tags">Tags: {{item.tagText}}</p>
+                <p class="tags" color="yellow">Tags: {{item.tagText}}</p>
                 <footer>{{formatTime(item.time)}}</footer>
             </div>
         </div>
