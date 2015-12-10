@@ -29,7 +29,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             controller: 'sideBarCtrl'
         });
 
-     $urlRouterProvider.otherwise('/#');
+    $urlRouterProvider.otherwise('/#');
 }])
 
 // parent controller that houses all the ui-views
