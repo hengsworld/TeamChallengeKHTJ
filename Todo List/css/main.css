@@ -80,6 +80,11 @@ body {
     font-size: 19px
 }
 
+.note .tags {
+    font-size: 14px;
+    margin-top: 25px;
+}
+
 .note footer {
     font-size: 15px;
     text-align: right;

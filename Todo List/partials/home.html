@@ -12,8 +12,9 @@
         <i class="delete fa fa-trash fa-lg" ng-click="delete(item)"></i>
         <h1>{{item.title}}</h1>
         <h2>By: {{item.author}}</h2>
+        <hr>
         <div ng-bind-html="renderHtml(item.body)"></div>
-        <p>{{item.tagText}}</p>
+        <p class="tags">Tags: {{item.tagText}}</p>
         <footer>{{formatTime(item.time)}}</footer>
     </div>
 </div>
