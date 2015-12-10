@@ -11,7 +11,7 @@
                 <input type="title" class="form-control" id="title" ng-model="title"></input>
             </div>
             <!-- Tagging format -->
-            <div><b>Tags</b></div>
+            <div>Tags</div>
             <div class="form-group">
                 <div data-ng-repeat="(key, tag) in inputTags" class="input-tag"> {{ tag.name }}
                 </div>
@@ -19,7 +19,7 @@
             </div>
             <div class=" form-group ">
                 <label for="content ">Content</label>
-                <textarea rows="4" cols="50" class="form-control" id="content" ng-model="body"></textarea>
+                <textarea data-ui-tinymce id="tinymce1" data-ng-model="body" rows="4" cols="50" class="form-control"></textarea>
             </div>
             <a ui-sref="home"><button ng-click="newNote()" id="add" class="btn btn-primary" type="button" ng-hide="id">Add</button></a>
             <a ui-sref="home"><button ng-click="editNote()" id="edit" class="btn btn-primary" type="button" ng-show="id">Save</button></a>
