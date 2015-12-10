@@ -198,6 +198,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         skin: 'lightgray',
         theme : 'modern',
         height: 300,
+        content_css: 'css/tinymce.css',
         plugins: [
             'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
             'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',

@@ -4,10 +4,10 @@
             <i class="fa fa-times fa-lg"></i>
         </button>
         <a ui-sref="home">
-            <button class="btn btn-default">Home</button>
+            <button class="btn btn-default" data-ng-click="panels.close();">Home</button>
         </a>
         <a ui-sref="edit">
-            <button class="btn btn-default">Create New</button>
+            <button class="btn btn-default" data-ng-click="panels.close();">Create New</button>
         </a>
     </div>
     <div ng-controller="TodoCtrl">
