@@ -16,7 +16,7 @@
                 <i class="delete fa fa-trash fa-lg" ng-click="delete(item)" ng-show="userName == item.author"></i>
                 <h1>{{item.title}}</h1>
                 <h2>By: {{item.author}}</h2>
-                <p>{{item.body}}</p>
+                <div ng-bind-html="renderHtml(item.body)"></div>
                 <p>{{item.tagText}}</p>
                 <footer>{{formatTime(item.time)}}</footer>
             </div>
