@@ -1,14 +1,14 @@
+<div>
     <div class="sidebar-margin">
         <button type="button" class="pane-head btn btn-default" data-ng-click="panels.close();">
             <i class="fa fa-times fa-lg"></i>
         </button>
     </div>
-
     <div ng-controller="TodoCtrl">
         <h1 class="feed-title">NotesFeed</h1>
         <div class="searchBar sidebar-margin">
             <i class="fa fa-search"></i>
-            <input name="all" placeholder="Search for Tags" id="search" ng-model="searchAll">
+            <input name="all" placeholder="  Search" id="search" ng-model="searchAll">
         </div>
         <div class="menu-notes container-fluid" ng-repeat="item in list | orderBy: '-time' | filter:searchAll">
             <div class="note">

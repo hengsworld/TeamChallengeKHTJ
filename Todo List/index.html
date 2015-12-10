@@ -36,15 +36,15 @@
 
 <body ng-app="TodoApp" ng-controller="TodoCtrl" class="container">
     <nav class="nav-bar">
-        <i class="menu-btn btn btn-default fa fa-bars fa-lg" ng-click="sideBarOpen()"></i>        
+        <i class="menu-btn btn btn-default fa fa-bars fa-lg" ng-click="sideBarOpen()"></i>
         <a ui-sref="home">
             <button class="btn btn-default">Home</button>
         </a>
         <a ui-sref="edit">
             <button class="btn btn-default">Create New</button>
         </a>
-<!--         <button class="btn btn-default" ng-click="sideBarOpen()">Left Bar</button> -->
-        <h1 class="page-title">DeezNotes</h1>
+        <!--         <button class="btn btn-default" ng-click="sideBarOpen()">Left Bar</button> -->
+        <h1 class="hidden-xs page-title">DeezNotes</h1>
         <button class="btn btn-default navbar-right" ng-hide="userId" ng-click="open()">Login</button>
         <button class="btn btn-default navbar-right" ng-show="userId" ng-click="logOut()">Log Out</button>
     </nav>

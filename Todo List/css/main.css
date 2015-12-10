@@ -1,4 +1,9 @@
-a, a:hover, a:focus, .delete, .delete:hover, .delete:focus {
+a,
+a:hover,
+a:focus,
+.delete,
+.delete:hover,
+.delete:focus {
     text-decoration: none;
     color: black;
     cursor: pointer;
@@ -80,11 +85,6 @@ body {
     font-size: 19px
 }
 
-.note .tags {
-    font-size: 14px;
-    margin-top: 25px;
-}
-
 .note footer {
     font-size: 15px;
     text-align: right;
@@ -104,9 +104,8 @@ body {
     margin-top: 80px;
 }
 
-.sidebar-margin { 
-    margin-top: 50px; 
-
+.sidebar-margin {
+    margin-top: 50px;
 }
 
 .loginForm #email {
@@ -128,6 +127,10 @@ body {
     height: 40px;
 }
 
+.smallScreen {
+    font-size: 15px;
+}
+
 .searchBar .fa-search {
     z-index: 0;
     position: absolute;
@@ -138,5 +141,3 @@ body {
     margin-left: 12px;
     margin-top: 7px;
 }
-
-
