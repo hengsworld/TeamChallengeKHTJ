@@ -13,7 +13,7 @@ body {
     font-family: Oxygen, Helvetica Neue, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 400;
-    background-color: #E9EAEE;
+    background-color: #88b8c2;
 }
 
 .full-modal {
@@ -23,7 +23,7 @@ body {
 .nav-bar {
     z-index: 10000;
     position: fixed;
-    background-color: black;
+    background-color: #986a4e;
     width: 100%;
     left: 0;
     right: 0;
@@ -42,6 +42,12 @@ body {
     max-width: 90px;
     padding: 5px;
     float: left;
+    background-color: #986a4e;
+    border: none;
+}
+
+.nav-bar img {
+    padding-bottom: 10px;
 }
 
 .navbar-right {
@@ -54,7 +60,7 @@ body {
 }
 
 .page-title {
-    color: white;
+    color: #55443a;
     display: inline;
     font-weight: bold;
 }
@@ -77,6 +83,12 @@ body {
 
 .sidebar-margin {
     margin-top: 50px;
+    background-color: white;
+}
+
+.sidebar-margin .btn {
+    border: none;
+    background-color: white;
 }
 
 .loginForm #email {

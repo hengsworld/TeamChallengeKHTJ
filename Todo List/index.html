@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Heng, Kevin, Jessica, Tyler">
     <meta name="description" content="Simple Todo list sharing web application">
+    <title>DeezNotes</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <!-- Angular Panels CSS -->
@@ -32,18 +33,15 @@
     <!-- UI tinymce -->
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script src='lib/tinymce.js'></script>
+
+    <link rel="icon" href="img/deez.png"/></head>
 </head>
 
 <body ng-app="TodoApp" ng-controller="TodoCtrl" class="container">
     <nav class="nav-bar">
         <i class="menu-btn btn btn-default fa fa-bars fa-lg" ng-click="sideBarOpen()"></i>
-        <a ui-sref="home">
-            <button class="btn btn-default">Home</button>
-        </a>
-        <a ui-sref="edit">
-            <button class="btn btn-default">Create New</button>
-        </a>
         <!--         <button class="btn btn-default" ng-click="sideBarOpen()">Left Bar</button> -->
+        <img src="img/deez.png" class="page-title"></img>
         <h1 class="hidden-xs page-title">DeezNotes</h1>
         <button class="btn btn-default navbar-right" ng-hide="userId" ng-click="open()">Login</button>
         <button class="btn btn-default navbar-right" ng-show="userId" ng-click="logOut()">Log Out</button>

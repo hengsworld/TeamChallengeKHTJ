@@ -3,6 +3,12 @@
         <button type="button" class="pane-head btn btn-default" data-ng-click="panels.close();">
             <i class="fa fa-times fa-lg"></i>
         </button>
+        <a ui-sref="home">
+            <button class="btn btn-default">Home</button>
+        </a>
+        <a ui-sref="edit">
+            <button class="btn btn-default">Create New</button>
+        </a>
     </div>
     <div ng-controller="TodoCtrl">
         <h1 class="feed-title">NotesFeed</h1>
