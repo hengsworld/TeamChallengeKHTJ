@@ -62,7 +62,6 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
                 'email': email,
                 'password': password
             })
-            .then($scope.signIn(email, password))
             .catch(function(error) {
                 return error;
             })
@@ -172,18 +171,6 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         $scope.$parent.list.$add(newItem);
         $scope.$parent.list.$save();
     }
-    $scope.privateNotes = function() {
-        var privateItem = {
-            title: $scope.title,
-            body: $scope.body,
-            tagText: $scope.tagText,
-            author: $scope.userName,
-            time: Firebase.ServerValue.TIMESTAMP
-        };
-        console.log(privateItem)
-        $scope.$parent.home.$add(privateItem);
-        $scope.$parent.home.$save();
-    }
 
     $scope.editNote = function() {
         $scope.$parent.list[$scope.id].title = $scope.title;
@@ -269,7 +256,16 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
                 })
                 .then(function() {
                     if ($scope.loginError == undefined) {
-                        $uibModalInstance.close();
+                        $scope.signIn($scope.email, $scope.password)
+                        .then(function(error) {
+                            $scope.loginError = error.message;
+                            console.log(error.message);
+                        })
+                        .then(function() {
+                            if ($scope.loginError == undefined) {
+                                $uibModalInstance.close();
+                            }
+                        });
                     }
                 });
         } else if (messageType == 'login') {
