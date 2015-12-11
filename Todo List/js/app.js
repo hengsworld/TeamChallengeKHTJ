@@ -53,7 +53,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
     }
     $scope.list = $firebaseArray(valueRef);
 
-    // signUp fungtion that chains and calls signIn afterwards
+    // signUp function that chains and calls signIn afterwards
     $scope.signUp = function(email, password) {
         console.log("creating user " + email);
         //pass in an object with the new 'email' and 'password'
