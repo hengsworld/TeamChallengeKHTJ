@@ -54,7 +54,11 @@ hr {
 
 .navbar-right {
     margin-right: 10px;
+<<<<<<< HEAD
+    right: 0;
+=======
     float: right;
+>>>>>>> 78e849ed8f09923cb87fc9d36c6337ef2b8f1ef0
 }
 
 .menu-btn {
