@@ -269,7 +269,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
                     }
                 });
         } else if (messageType == 'login') {
-            $scope.signIn(email, password)
+            $scope.signIn($scope.email, $scope.password)
                 .then(function(error) {
                     $scope.loginError = error.message;
                     console.log(error.message);
