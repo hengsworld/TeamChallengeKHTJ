@@ -52,6 +52,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         valueRef = ref.child('TodoList');
     }
     $scope.list = $firebaseArray(valueRef);
+    $scope.home = $firebaseArray(valueRef);
 
     // signUp fungtion that chains and calls signIn afterwards
     $scope.signUp = function(email, password) {
@@ -171,6 +172,18 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         console.log(newItem)
         $scope.$parent.list.$add(newItem);
         $scope.$parent.list.$save();
+    }
+    $scope.privateNotes = function() {
+        var privateItem = {
+            title: $scope.title,
+            body: $scope.body,
+            tagText: $scope.tagText,
+            author: $scope.userName,
+            time: Firebase.ServerValue.TIMESTAMP
+        };
+        console.log(privateItem)
+        $scope.$parent.home.$add(privateItem);
+        $scope.$parent.home.$save();
     }
 
     $scope.editNote = function() {

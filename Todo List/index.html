@@ -33,8 +33,8 @@
     <!-- UI tinymce -->
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script src='lib/tinymce.js'></script>
-
-    <link rel="icon" href="img/deez.png"/></head>
+    <link rel="icon" href="img/deez.png" />
+</head>
 </head>
 
 <body ng-app="TodoApp" ng-controller="TodoCtrl" class="container">
@@ -43,8 +43,8 @@
         <!--         <button class="btn btn-default" ng-click="sideBarOpen()">Left Bar</button> -->
         <img src="img/deez.png" class="page-title"></img>
         <h1 class="hidden-xs page-title">DeezNotes</h1>
-        <button class="btn btn-default navbar-right" ng-hide="userId" ng-click="open()">Login</button>
-        <button class="btn btn-default navbar-right" ng-show="userId" ng-click="logOut()">Log Out</button>
+        <button class="btn btn-default navbar-right" align="right" ng-hide="userId" ng-click="open()">Login</button>
+        <button class="btn btn-default navbar-right" align="right" ng-show="userId" ng-click="logOut()">Log Out</button>
     </nav>
     <main>
         <div ui-view></div>
