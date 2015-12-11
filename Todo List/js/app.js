@@ -55,9 +55,8 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 
     // signUp function that chains and calls signIn afterwards
     $scope.signUp = function(email, password) {
-        console.log("creating user " + email);
+        console.log("creating user " + email + ', ' + password);
         //pass in an object with the new 'email' and 'password'
-        var logError = undefined;
         var promise = Auth.$createUser({
                 'email': email,
                 'password': password
@@ -66,7 +65,6 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             .catch(function(error) {
                 return error;
             })
-        console.log(promise);
         return promise;
     };
 
@@ -77,16 +75,14 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 
     //separate signIn function
     $scope.signIn = function(email, password) {
-        console.log(email);
+        console.log(email + ', ' + password);
         var promise = Auth.$authWithPassword({
                 'email': email,
                 'password': password
             })
-            .then(authData)
             .catch(function(error) {
                 return error;
             });
-        console.log(promise);
         return promise;
     };
 
@@ -151,6 +147,8 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 // separate controller for the edit page
 .controller('newNoteCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
 
+    $scope.private = true;
+
     $scope.id = $stateParams.id;
     if ($scope.id != undefined) {
         $scope.title = $scope.list[$scope.id].title;
@@ -166,7 +164,8 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             body: $scope.body,
             tagText: $scope.tagText,
             author: $scope.userName,
-            time: Firebase.ServerValue.TIMESTAMP
+            time: Firebase.ServerValue.TIMESTAMP,
+            'private': $scope.private
         };
         console.log(newItem)
         $scope.$parent.list.$add(newItem);
@@ -210,11 +209,34 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
 }])
 
 
-.controller('sideBarCtrl', ['$scope', 'panels', function($scope, panels) {
+.controller('sideBarCtrl', ['$scope', 'panels', '$uibModal', '$sce', function($scope, panels, $uibModal, $sce) {
 
     $scope.$on('leftBarOpen', function(event, args) {
         panels.open('sideBar');
     });
+
+    $scope.renderHtml = function(html_code) {
+        return $sce.trustAsHtml(html_code);
+    }
+
+    $scope.enlarge = function(id) {
+
+        var body = document.querySelector('body');
+        $scope = angular.element(body).scope();
+
+        $scope.itemID = id;
+        $scope.item = $scope.list[id];
+
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'partials/large-note.html',
+            controller: 'ModalInstanceCtrl',
+            windowClass: 'full-modal',
+            size: 'lg',
+            scope: $scope
+        });
+
+    }
 
 }])
 
@@ -230,6 +252,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             $scope.signUp($scope.email, $scope.password)
                 .then(function(error) {
                     $scope.loginError = error.message;
+                    console.log(error.message);
                 })
                 .then(function() {
                     if ($scope.loginError == undefined) {
@@ -240,6 +263,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
             $scope.signIn($scope.email, $scope.password)
                 .then(function(error) {
                     $scope.loginError = error.message;
+                    console.log(error.message);
                 })
                 .then(function() {
                     if ($scope.loginError == undefined) {
