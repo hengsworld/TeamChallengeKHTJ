@@ -19,6 +19,6 @@
         <div ng-bind-html="renderHtml(item.body)"></div>
         <hr>
         <p class="tags">Tags: {{item.tagText}}</p>
-        <footer>{{formatTime(item.time)}}</footer>
+        <footer ng-bind="item.timeF = formatTime(item.time)"></footer>
     </div>
 </div>
