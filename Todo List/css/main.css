@@ -54,11 +54,7 @@ hr {
 
 .navbar-right {
     margin-right: 10px;
-<<<<<<< HEAD
-    right: 0;
-=======
     float: right;
->>>>>>> 78e849ed8f09923cb87fc9d36c6337ef2b8f1ef0
 }
 
 .menu-btn {
@@ -82,7 +78,7 @@ hr {
     margin-bottom: 15px;
 }
 
-.help-block {  
+.help-block {
     color: #801515;
 }
 
@@ -173,10 +169,11 @@ hr {
     border-bottom: none;
     font-size: 20px;
     height: 30px;
-    color: #801515; 
+    color: #801515;
 }
 
-.fa-trash, .fa-pencil-square-o {
+.fa-trash,
+.fa-pencil-square-o {
     color: #3e7cba;
 }
 
@@ -185,6 +182,11 @@ hr {
         font-size: 20px;
         height: 40px;
     }
+}
+
+.pointer:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 footer {
