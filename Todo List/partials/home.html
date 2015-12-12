@@ -12,7 +12,7 @@
                 <h2>{{item.title}}</h2>
             </div>
             <div class="icon col-xs-2 col-sm-3">
-                <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})"><i class="edit fa fa-pencil-square-o fa-lg"></i></a>
+                <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})"><i class="delete edit fa fa-pencil-square-o fa-lg"></i></a>
                 <i class="delete fa fa-trash fa-lg" ng-click="delete(item)"></i>
             </div>
         </div>
