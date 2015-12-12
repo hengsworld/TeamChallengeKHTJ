@@ -156,6 +156,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         $scope.title = $scope.list[$scope.id].title;
         $scope.body = $scope.list[$scope.id].body;
         $scope.tagText = $scope.list[$scope.id].tagText;
+        $scope.private = $scope.list[$scope.id].private;
         var author = $scope.list[$scope.id].author;
     }
 
@@ -178,6 +179,7 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         $scope.$parent.list[$scope.id].title = $scope.title;
         $scope.$parent.list[$scope.id].body = $scope.body;
         $scope.$parent.list[$scope.id].tagText = $scope.tagText;
+        $scope.$parent.list[$scope.id].private = $scope.private;
         $scope.$parent.list.$save($scope.$parent.list[$scope.id]);
     }
 
