@@ -13,13 +13,12 @@ body {
     font-family: Oxygen, Helvetica Neue, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 400;
-    background-color: #88b8c2;
+    background-color: #7AB7C2;
 }
 
 hr {
     height: 2px;
-    background-color: red;
-    color: red;
+    background-color: #996942;
 }
 
 .full-modal {
@@ -29,13 +28,13 @@ hr {
 .nav-bar {
     z-index: 10000;
     position: fixed;
-    background-color: #986a4e;
+    background-color: #996942;
     width: 100%;
     left: 0;
     right: 0;
     height: 50px;
     opacity: 1;
-    padding-right: 10px;
+    /*padding-right: 10px;*/
     padding-left: 5px;
     vertical-align: middle;
     text-align: center;
@@ -44,38 +43,48 @@ hr {
 .nav-bar .btn {
     height: 30px;
     margin-left: 5px;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     max-width: 90px;
     padding: 5px;
-    float: left;
-    background-color: #986a4e;
+    /*float: left;*/
+    background-color: ghostwhite;
     border: none;
 }
 
-.navbar-right {
-    margin-right: 10px;
-    float: right;
+.navbar-left {
+    text-align: left;
+}
+
+.nav-right {
+    text-align: right;
+    display: inline;
+    vertical-align: middle;
+    margin-top: 10px;
 }
 
 .menu-btn {
     margin-left: 10px;
-    max-width: 40px;
+    margin-top: 10px;
+    width: 50px;
 }
 
 .page-title {
-    color: #55443a;
+    color: #331a00;
     display: inline;
     font-weight: bold;
-    margin-top: 8px;
-    vertical-align: baseline;
+    margin-top: 5px;
     text-align: center;
+    vertical-align: middle;
 }
 
 .note {
-    /*border: 1px solid black;*/
-    background-color: #fbfbfb;
-    padding: 10px;
+    background-color: ghostwhite;
+    padding: 15px;
     margin-bottom: 15px;
+}
+
+.note h2, h3 {
+    margin-top: 5px;
 }
 
 .help-block {  
@@ -85,6 +94,7 @@ hr {
 .feed-title {
     text-align: center;
     font-weight: bold;
+    color: #331a00;
 }
 
 .top-margin {
@@ -93,12 +103,14 @@ hr {
 
 .sidebar-margin {
     margin-top: 50px;
-    background-color: white;
 }
 
 .sidebar-margin .btn {
     border: none;
-    background-color: white;
+}
+
+.panel {
+    background-color: #7ED9CF;
 }
 
 .loginForm #email {
@@ -132,15 +144,12 @@ hr {
 }
 
 .tags {
-    color: #3e7cba;
+    color: #15255C;
 }
 
 .icon {
-    padding-top: 20px;
-}
-
-.icon1 {
-    padding-top: 20px;
+    /*padding-top: 20px;*/
+    text-align: right;
 }
 
 .pane-head {
@@ -148,32 +157,8 @@ hr {
     right: 0px;
 }
 
-#title {
-    background-color: #88b8c2;
-    box-shadow: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: solid #3c4850;
-    font-size: 45px;
-    height: 65px;
-    color: white;
-}
-
-#tags {
-    background-color: #88b8c2;
-    box-shadow: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    font-size: 20px;
-    height: 30px;
-    color: #801515; 
-}
-
 .fa-trash, .fa-pencil-square-o {
-    color: #3e7cba;
+    color: #15255C;
 }
 
 @media screen and (max-width: 768px) {

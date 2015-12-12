@@ -37,15 +37,26 @@
     <link rel="icon" href="img/deez.png"/></head>
 </head>
 
-<body ng-app="TodoApp" ng-controller="TodoCtrl" class="container">
-    <nav class="nav-bar">
-        <i class="menu-btn btn btn-default fa fa-bars fa-lg" ng-click="sideBarOpen()"></i>
+<nav class="navbar nav-bar container-fluid">
+    <div class="row">
+        <div class="col-xs-4 navbar-left">
+        <button class="btn btn-default menu-btn" ng-click="sideBarOpen()"><i class="fa fa-bars fa-lg"></i></button>
+        </div>
         <!--         <button class="btn btn-default" ng-click="sideBarOpen()">Left Bar</button> -->
-        <img src="img/deez.png" class="page-title"></img>
-        <h1 class="hidden-xs page-title">DeezNotes</h1>
-        <button class="btn btn-default navbar-right" ng-hide="userId" ng-click="open()">Login</button>
-        <button class="btn btn-default navbar-right" ng-show="userId" ng-click="logOut()">Log Out</button>
-    </nav>
+        <div class="col-xs-4">
+            <img src="img/deez.png" class="page-title"></img>
+            <h1 class="hidden-xs page-title">DeezNotes</h1>
+        </div>
+        <div class="col-xs-4 nav-right">
+        <button class="btn btn-default" ng-hide="userId" ng-click="open()">Login</button>
+        <p class="hidden-xs hidden-sm nav-right" ng-show="userId">{{userName}}</p>
+        <button class="btn btn-default" ng-show="userId" ng-click="logOut()">Log Out</button>
+        </div>
+    </div>
+</nav>
+
+<body ng-app="TodoApp" ng-controller="TodoCtrl" class="container">
+    
     <main>
         <div ui-view></div>
     </main>
