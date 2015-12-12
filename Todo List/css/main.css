@@ -150,6 +150,7 @@ hr {
 
 .icon {
     text-align: right;
+    padding-right: 5px;
 }
 
 .pane-head {
@@ -157,7 +158,11 @@ hr {
     right: 0px;
 }
 
-#title {
+
+.form-control {
+    color: black;
+}
+/*#title {
     background-color: #7AB7C2;
     box-shadow: none;
     border-top: none;
@@ -179,7 +184,7 @@ hr {
     font-size: 20px;
     height: 30px;
     color: #801515;
-}
+}*/
 
 .fa-trash,
 .fa-pencil-square-o {
