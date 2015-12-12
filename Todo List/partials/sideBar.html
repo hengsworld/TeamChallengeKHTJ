@@ -17,7 +17,7 @@
             <input name="all" placeholder="  Search" id="search" ng-model="searchAll">
         </div>
         <div class="menu-notes container-fluid" ng-repeat="item in list | orderBy: '-time' | filter: searchAll">
-            <div class="note" ng-if="item.private == false && item.author != userName">
+            <div class="note" ng-if="item.private == false">
                 <div class="row">
                     <div class="pointer col-xs-11 col-sm-11">
                         <h3 ng-click="enlarge(list.$indexFor(list.$keyAt(item)));panels.close();">{{item.title}}</h3>

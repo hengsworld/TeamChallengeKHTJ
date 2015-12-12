@@ -132,10 +132,12 @@ angular.module('TodoApp', ['angular.panels', 'ui.router', 'ui.bootstrap', 'fireb
         return new Date(time).toLocaleString();
     }
 
-    $scope.getKey = function(item) {
-        var key = $scope.list.$keyAt(item);
-        console.log(key);
-        console.log($scope.list.$indexFor(key));
+    $scope.formatPrivate = function(isPrivate) {
+        var format = 'Public';
+        if (isPrivate) {
+            format = 'Private';
+        }
+        return format;
     }
 
     $scope.renderHtml = function(html_code) {
