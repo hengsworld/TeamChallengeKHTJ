@@ -17,13 +17,13 @@
             <input name="all" placeholder="  Search" id="search" ng-model="searchAll">
         </div>
         <div class="menu-notes container-fluid" ng-repeat="item in list | orderBy: '-time' | filter: searchAll">
-            <div class="note" ng-if="item.private == false && item.author != userName">
+            <div class="note" ng-if="item.private == false">
                 <div class="row">
                     <div class="pointer col-xs-10 col-sm-9">
                         <h3 ng-click="enlarge(list.$indexFor(list.$keyAt(item)));panels.close();">{{item.title}}</h3>
                     </div>
                     <div class="icon col-xs-2 col-sm-3">
-                        <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})" ng-show="userName == item.author"><i class="editSide fa fa-pencil-square-o fa-lg" ng-click="getKey(item)"></i></a>
+                        <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})" ng-show="userName == item.author"><i class="editSide fa fa-pencil-square-o fa-lg" ng-click="panels.close()"></i></a>
                         <i class="deleteSide fa fa-trash fa-lg" ng-click="delete(item)" ng-show="userName == item.author"></i>
                     </div>
                 </div>
