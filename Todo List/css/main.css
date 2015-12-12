@@ -51,6 +51,10 @@ hr {
     border: none;
 }
 
+.nav-bar .menu-btn {
+    background-color: #996942;
+}
+
 .navbar-left {
     text-align: left;
 }
