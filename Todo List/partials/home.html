@@ -8,10 +8,10 @@
 <div ng-repeat="item in list | orderBy: '-time' | filter:searchNotes" ng-if="userName == item.author">
     <div class="note">
         <div class="row">
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <div class="col-xs-11 col-sm-11">
                 <h2>{{item.title}}</h2>
             </div>
-            <div class="icon col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <div class="icon col-xs-1 col-sm-1">
                 <a ui-sref="re-edit({id: list.$indexFor(list.$keyAt(item))})"><i class="edit fa fa-pencil-square-o fa-lg"></i></a>
                 <i class="delete fa fa-trash fa-lg" ng-click="delete(item)"></i>
             </div>
@@ -19,7 +19,6 @@
         <div ng-bind-html="renderHtml(item.body)"></div>
         <hr>
         <p>Tags: <span class="tags">{{item.tagText}}</span></p>
-        <p>
-            <footer>{{formatTime(item.time)}}</footer>
+        <footer ng-bind="item.timeF = formatTime(item.time)"></footer>
     </div>
 </div>

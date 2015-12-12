@@ -81,6 +81,7 @@ hr {
     background-color: ghostwhite;
     padding: 15px;
     margin-bottom: 15px;
+    border-radius: 10px;
 }
 
 .note h2, h3 {
@@ -148,7 +149,6 @@ hr {
 }
 
 .icon {
-    /*padding-top: 20px;*/
     text-align: right;
 }
 
@@ -157,7 +157,32 @@ hr {
     right: 0px;
 }
 
-.fa-trash, .fa-pencil-square-o {
+#title {
+    background-color: #88b8c2;
+    box-shadow: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #3c4850;
+    font-size: 45px;
+    height: 65px;
+    color: white;
+}
+
+#tags {
+    background-color: #88b8c2;
+    box-shadow: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    font-size: 20px;
+    height: 30px;
+    color: #801515;
+}
+
+.fa-trash,
+.fa-pencil-square-o {
     color: #15255C;
 }
 
@@ -166,6 +191,11 @@ hr {
         font-size: 20px;
         height: 40px;
     }
+}
+
+.pointer:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 footer {
