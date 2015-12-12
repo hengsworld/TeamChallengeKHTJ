@@ -158,6 +158,10 @@ hr {
     right: 0px;
 }
 
+.deleteSide {
+    margin-right: 5px;
+}
+
 #add, #save {
     margin-bottom: 20px;
 }
