@@ -158,6 +158,9 @@ hr {
     right: 0px;
 }
 
+#add, #save {
+    margin-bottom: 20px;
+}
 
 .form-control {
     color: black;
